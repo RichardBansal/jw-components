@@ -1,6 +1,34 @@
-@import 'bootstrap/less';
+// Core variables
+@import "~bootstrap/less/variables.less";
 
-dialog#itinerary{
+// Variable overrides
+@text-color: #ff0000;
+
+// Mixins
+@import "~bootstrap/less/mixins.less";
+
+// Reset and dependencies
+@import "~bootstrap/less/normalize.less";
+@import "~bootstrap/less/print.less";
+@import "~bootstrap/less/glyphicons.less";
+
+// Core CSS
+@import "~bootstrap/less/scaffolding.less";
+@import "~bootstrap/less/type.less";
+@import "~bootstrap/less/code.less";
+@import "~bootstrap/less/grid.less";
+@import "~bootstrap/less/tables.less";
+@import "~bootstrap/less/forms.less";
+@import "~bootstrap/less/buttons.less";
+
+// Components
+@import "~bootstrap/less/jumbotron.less";
+
+// Utility classes
+@import "~bootstrap/less/utilities.less";
+@import "~bootstrap/less/responsive-utilities.less";
+
+#itinerary{
   min-width: 60%;
   max-width: 60%;
   position: absolute;
@@ -20,7 +48,7 @@ dialog#itinerary{
   }
 
   .walk {
-    .clearfix();
+    //.clearfix();
     max-width: 70%;
     float: left;
   }
@@ -42,11 +70,13 @@ dialog#itinerary{
   }
 
   .removeWalk {
-    .glyphicon .glyphicon-remove;
+    .glyphicon;
+    .glyphicon-remove;
   }
 
   .addWalk {
-    .glyphicon .glyphicon-new-window;
+    .glyphicon;
+    .glyphicon-new-window;
   }
 
 }
@@ -66,7 +96,6 @@ dialog#itinerary{
     .toggle {
       .btn;
       .btn-default;
-      .dropdown-toggle;
     }
   }
 

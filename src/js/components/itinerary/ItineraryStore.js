@@ -1,6 +1,6 @@
 import { dispatch, register } from './ItineraryDispatcher';
 import { EventEmitter } from 'events';
-import ItineraryConstants from './ItineraryConstants';
+import Actions from './ItineraryConstants';
 import {lists, walks} from './ItineraryStaticData';
 
 const CHANGE_EVENT = 'change';
@@ -8,17 +8,16 @@ const CHANGE_EVENT = 'change';
 let _itinerary = lists[0]; //_itinerary represents the current list, will refactor to be _currentList
 let _allLists = lists.slice();
 let _walkSelected = null;
+let _walkDialogOpen = false;
 
 const _removeWalk = (id) => {
   _itinerary.walks.splice(_itinerary.walks.findIndex(walk => walk.id === id), 1);
 };
 
-const _addWalk = (id, givenList) => { //Refactor: Should pass around the list id instead, or title, instead of the list as is
-  debugger;
-  let list = givenList || _itinerary;
+const _addWalk = (id, list = _itinerary) => { //Refactor: Should pass around the list id instead, or title, instead of the list as is
 
   let walkFound = list.walks.find(walk => walk.id === id);
-  debugger;
+
   if (!walkFound) {
     const walk = walks.find(walk => walk.id === id);
     list.walks.unshift(walk);
@@ -28,17 +27,16 @@ const _addWalk = (id, givenList) => { //Refactor: Should pass around the list id
 };
 
 const _createList = (title) => {
-  debugger;
-  let list = _allLists.find(list => list.title === title);
+  const list = _allLists.find(list => list.title === title);
 
-  if(!list){
+  if (!list){
     _allLists.push({
-      id: _allLists.length+1,
+      id: _allLists.length + 1,
       title,
       shareUrl: "janeswalk.org/Harold/" + title,
       description: "View my Jane's Walk Itinerary!",
       walks: [],
-    })
+    });
   }
 
   return _allLists[_allLists.length-1]; //Returning list, since after _createList, _addWalk is called, so passing around the list
@@ -62,7 +60,7 @@ const _getWalks = (id) => {
 
     let listFound = _allLists.find(list => list.id === id);
 
-    if(listFound){
+    if (listFound){
       _itinerary = listFound;
     } else {
       console.log('list not found, notify user');
@@ -76,51 +74,58 @@ const ItineraryStore = Object.assign(EventEmitter.prototype, {
     this.emit(CHANGE_EVENT);
   },
 
-  addChangeListener(callback){
+  addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   },
 
-  removeChangeListener(callback){
+  removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getItinerary(){
+  getItinerary() {
     return _itinerary;
   },
 
-  getAllLists(){
+  getAllLists() {
     return _allLists;
   },
 
-  getWalkSelected(){
+  getWalkSelected() {
     return _walkSelected;
+  },
+
+  getWalkDialog() {
+    return _walkDialogOpen;
   },
 
   //TODO: use _updateWalks to receive walks from server via API call
   dispatcherIndex: register(function(action) {
     switch (action.type) {
-    case ItineraryConstants.REMOVE_WALK:
+    case Actions.REMOVE_WALK:
       _removeWalk(action.id);
       break;
-    case ItineraryConstants.ADD_WALK:
+    case Actions.ADD_WALK:
       _addWalk(action.id, action.list);
       break;
-    case ItineraryConstants.UPDATE_TITLE:
+    case Actions.UPDATE_TITLE:
       _updateTitle(action.title);
       break;
-    case ItineraryConstants.UPDATE_DESCRIPTION:
+    case Actions.UPDATE_DESCRIPTION:
       _updateDescription(action.description);
       break;
-    case ItineraryConstants.VIEW_LIST:
+    case Actions.VIEW_LIST:
       _getWalks(action.id);
       break;
-    case ItineraryConstants.CREATE_LIST:
+    case Actions.CREATE_LIST:
       let newList = _createList(action.title);
-      debugger;
       _addWalk(action.id, newList);
       break;
-    case ItineraryConstants.WALK_SELECTED:
-      _walkSelected = action.id
+    case Actions.WALK_SELECTED:
+      _walkSelected = action.id;
+      break
+    case Actions.ADD_WALK_DIALOG:
+      _walkDialogOpen = !_walkDialogOpen;
+      break;
     }
 
     ItineraryStore.emitChange();

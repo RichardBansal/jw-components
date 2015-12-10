@@ -3,8 +3,9 @@ import ItineraryStore from './ItineraryStore';
 import ItineraryActions from './ItineraryActions';
 
 import Walk from './Walk.jsx';
-import Header from './Header.jsx';
+import ItineraryHeader from './ItineraryHeader.jsx';
 import AddWalkToListDialog from './AddWalkToListDialog.jsx';
+import './view.less';
 
 const getItinerary = () => ({
     walks: ItineraryStore.getItinerary().walks,
@@ -12,24 +13,13 @@ const getItinerary = () => ({
     description: ItineraryStore.getItinerary().description,
     lists: ItineraryStore.getAllLists(),
     activeWalk: ItineraryStore.getWalkSelected(),
+    walkDialogOpen: ItineraryStore.getWalkDialog(),
 });
 
 export default class Itinerary extends React.Component {
-  getDefaultProps() {
-    return {
-      itinerary: null,
-    };
-  }
-
-  propTypes() {
-    return {
-      itinerary: React.PropTypes.array,
-    };
-  }
-
-  constructor(...args) {
-    super(...args);
-    this.state = this.props.itinerary || getItinerary();
+  constructor(props, ...args) {
+    super(props, ...args);
+    this.state = props.itinerary || getItinerary();
     this._onChange = this._onChange.bind(this);
   }
 
@@ -47,7 +37,7 @@ export default class Itinerary extends React.Component {
 
   render() {
     const {walks, title, description} = this.state;
-    debugger;
+
     const ItineraryWalks = walks.map(({map, id, title, time}) =>
         <Walk
             title={title}
@@ -56,6 +46,7 @@ export default class Itinerary extends React.Component {
             id={id}
             remove={ItineraryActions.remove}
             walkSelected={ItineraryActions.walkSelected}
+            addWalkDialog={ItineraryActions.addWalkDialog}
         />
     );
 
@@ -64,7 +55,7 @@ export default class Itinerary extends React.Component {
         <AddWalkToListDialog {...this.state} {...ItineraryActions}/>
         <div className="itinerary">
           <section>
-            <Header {...this.state} {...ItineraryActions}/>
+            <ItineraryHeader {...this.state} {...ItineraryActions}/>
           </section>
           <ul>
             {ItineraryWalks}
@@ -74,3 +65,11 @@ export default class Itinerary extends React.Component {
     );
   }
 }
+
+Itinerary.defaultProps = {
+  itinerary: null,
+};
+
+Itinerary.propTypes = {
+  itinerary: React.PropTypes.array,
+};

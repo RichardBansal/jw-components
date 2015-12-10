@@ -3,19 +3,14 @@ import React from 'react';
 export default class AddWalkToListDialog extends React.Component {
   constructor(...args) {
     super(...args);
-  }
-
-  propTypes() {
-    return {
-      lists: React.PropTypes.array,
-      add: React.PropTypes.func,
-      createList: React.PropTypes.func,
-      walkSelected: React.PropTypes.number,
+    this.state = {
+      newList: null
     }
   }
 
   render() {
-    const {lists, add, createList, activeWalk} = this.props;
+    const {lists, add, createList, activeWalk, walkDialogOpen, addWalkDialog} = this.props;
+    const {newList} = this.state;
     //selectedWalk comes from where
 
     const allLists = lists.map(list => {
@@ -24,15 +19,16 @@ export default class AddWalkToListDialog extends React.Component {
 
       const walkFound = walks.find(walk => walk.id === activeWalk);
 
-      if(walkFound){
-        return ( //FIX: Issue with onClick, only available for last item in the list
-          <li onClick={(ev) => add(activeWalk,list,ev.target.value)} key={id}>
+      if (walkFound){
+        //TODO: Issue with onClick, only available for last item in the list
+        return (
+          <li key={id} onClick={(ev) => add(activeWalk,list,ev.target.value)}>
             <span className="glyphicon glyphicon-ok">{title}</span>
           </li>
         )
       } else {
         return (
-          <li key={id}>
+          <li key={id} onClick={(ev) => add(activeWalk,list,ev.target.value)}>
             <span>{title}</span>
           </li>
         )
@@ -40,16 +36,23 @@ export default class AddWalkToListDialog extends React.Component {
     });
 
     return(
-      <dialog id="addWalk">
+      <dialog id="addWalk" open={walkDialogOpen}>
         <ul>
           {allLists}
         </ul>
 
-        <input ref="list" placeholder="Create a new List"></input>
+        <input placeholder="Create a new List" value={newList} onChange={ev => {this.setState({newList:ev.target.value})}}></input>
 
-        <button onClick={(ev) => createList(activeWalk, this.refs.list.value)}>Create</button>
-        <button onClick={(ev) => document.getElementById('addWalk').close()}>Close</button>
+        <button onClick={ev => {createList(activeWalk, newList);this.setState({newList:null})}}>Create</button>
+        <button onClick={ev => addWalkDialog()}>Close</button>
       </dialog>
     )
   }
 }
+
+AddWalkToListDialog.propTypes = {
+    lists: React.PropTypes.array,
+    add: React.PropTypes.func,
+    createList: React.PropTypes.func,
+    walkSelected: React.PropTypes.number,
+};
