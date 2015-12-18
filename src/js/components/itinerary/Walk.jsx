@@ -25,7 +25,7 @@ Walk.propTypes = {
   title: React.PropTypes.string,
   time: React.PropTypes.number,
   meeting: React.PropTypes.string,
-  key: React.PropTypes.number.isRequired,
+  id: React.PropTypes.number.isRequired,
   remove: React.PropTypes.func.isRequired,
   addWalkDialog: React.PropTypes.func.isRequired,
 };

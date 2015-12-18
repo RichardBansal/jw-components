@@ -45,6 +45,7 @@ export default class Itinerary extends React.Component {
             meeting={map.markers[0].title}
             start={time.slots[0][0]}
             id={id}
+            key={id}
             remove={ItineraryActions.remove}
             walkSelected={ItineraryActions.walkSelected}
             addWalkDialog={ItineraryActions.addWalkDialog}

@@ -14,13 +14,13 @@ const WalkTeam = ({team}) => {
 
     return (
       <div>
-        { connections.map(c => (member[c.name].length > 0 ? <a href={c.href + member[c.name]} target="_blank" className={c.style}></a> : null))}
+        { connections.map((c,i) => (member[c.name].length > 0 ? <a key={i} href={c.href + member[c.name]} target="_blank" className={c.style}></a> : null))}
       </div>
     );
   };
 
-  let teamMembers = team.map(member => (
-    <article>
+  let teamMembers = team.map((member, i)=> (
+    <article key={i}>
       <header>
         <h3>{member['name-first']} {member['name-last']}</h3>
         <h4>{member['role']}</h4>

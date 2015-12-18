@@ -28,11 +28,11 @@ const WalkMenu = ({walk}) => {
       </header>
       <section id="menu">
         <ul>
-         {menuItems.map(item => <li><a href={`#${item}`}>{item}</a></li>)}
+         {menuItems.map((item,i) => <li key={i}><a href={`#${item}`}>{item}</a></li>)}
         </ul>
       </section>
       <section id="tags">
-        {tags.map(tag => <span>#{tagsRef[tag]}, </span>)}
+        {tags.map((tag,i) => <span key={i}>#{tagsRef[tag]}, </span>)}
       </section>
     </section>
   );

@@ -5,7 +5,7 @@ const WalkRoute = ({map}) => (
     <a name="Walk Route"></a>
     <h2>Walk Route</h2>
     <ol>
-      {map.markers.map(marker => <li>{marker.title}</li>)}
+      {map.markers.map((marker,i) => <li key={i}>{marker.title}</li>)}
     </ol>
   </section>
 );
