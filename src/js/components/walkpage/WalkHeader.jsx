@@ -2,17 +2,18 @@ import React from 'react';
 import { dateFormatted } from '../itinerary/ItineraryUtils';
 
 //TODO: Duplicate of Itinerary <Walk/>
+//TODO: Issue with Favourite being removed on first attempt (works fine for Itinerary)
 
 const WalkHeader = ({walk, id, remove, add, existsInItinerary, existsInFavourites, favoriteListId, itineraryListId}) => {
-
+  debugger;
   const favButton = () => {
     if (existsInFavourites) return <button className="removeFavourite" onClick={()=>remove(id,favoriteListId)}> </button>;
-    return <button className="addFavourite" onClick={()=>add(id,favoriteListId)}> </button>;
+    else return <button className="addFavourite" onClick={()=>add(id,favoriteListId)}> </button>;
   };
 
   const addButton = () => {
     if (existsInItinerary) return <button className="removeItinerary" onClick={()=>remove(id,itineraryListId)}>I'm going</button>;
-    return <button className="addItinerary" onClick={()=>add(id,itineraryListId)}> </button>;
+    else return <button className="addItinerary" onClick={()=>add(id,itineraryListId)}> </button>;
   };
 
   const addToFavourites = favButton();

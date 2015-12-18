@@ -22,7 +22,7 @@ const favoriteListId = ItineraryStore.getAllLists()[1].id; //for stubbed data, a
 
 //TODO: Conditionals (? and ||) in getWalk are for stubbed data
 
-const getWalk = (props = null) => ({
+const getWalk = (props) => ({
   walk: props.walk || walk.walk,
   page: props.page || walk.page,
   id: props.walk ? props.walk.id : walkId,
