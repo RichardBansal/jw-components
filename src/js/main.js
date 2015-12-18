@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Itinerary from './components/itinerary/Itinerary.jsx';
+import App from './components/App.jsx';
 
-ReactDOM.render(<Itinerary/>, document.getElementById('main'));
+ReactDOM.render(<App/>, document.getElementById('main'));

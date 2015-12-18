@@ -9,20 +9,35 @@ let _itinerary = lists[0]; //_itinerary represents the current list, will refact
 let _allLists = lists.slice();
 let _walkSelected = null;
 let _walkDialogOpen = false;
+let _dialogOpen = false;
+let _currentListId = lists[0].id;
 
-const _removeWalk = (id) => {
-  _itinerary.walks.splice(_itinerary.walks.findIndex(walk => walk.id === id), 1);
+const _removeWalk = (id, listId) => {
+  let list = _allLists.find(list => list.id === listId);
+  list.walks.splice(_itinerary.walks.findIndex(walk => walk.id === id), 1);
 };
 
-const _addWalk = (id, list = _itinerary) => { //Refactor: Should pass around the list id instead, or title, instead of the list as is
+//const _addWalk = (id, list = _itinerary) => {
+const _addWalk = (id, listId) => {
+  let list = _allLists.find(list => list.id === listId);
 
-  let walkFound = list.walks.find(walk => walk.id === id);
-
-  if (!walkFound) {
-    const walk = walks.find(walk => walk.id === id);
-    list.walks.unshift(walk);
+  //TODO: May not be required after API calls
+  if (!list){
+    console.log('List could not be found')
   } else {
-    console.log('Walk already exists, notify the user');
+    let walkFound = list.walks.find(walk => walk.id === id);
+
+    if (!walkFound) {
+      const walk = walks.find(walk => walk.id === id);
+      if (!walk) {
+        console.log('walk not found');
+      } else {
+        list.walks.unshift(walk);
+      }
+
+    } else {
+      console.log('Walk already exists, notify the user');
+    }
   }
 };
 
@@ -65,7 +80,6 @@ const _getWalks = (id) => {
     } else {
       console.log('list not found, notify user');
     }
-
   }
 };
 
@@ -94,18 +108,37 @@ const ItineraryStore = Object.assign(EventEmitter.prototype, {
     return _walkSelected;
   },
 
+  getActiveList() {
+    return _currentListId;
+  },
+
   getWalkDialog() {
     return _walkDialogOpen;
+  },
+
+  getDialog() {
+    return _dialogOpen;
+  },
+
+  existsInList(listId,id) {
+    const list = _allLists.find(list => list.id === listId);
+    return list.walks.find(walk => walk.id === id);
   },
 
   //TODO: use _updateWalks to receive walks from server via API call
   dispatcherIndex: register(function(action) {
     switch (action.type) {
     case Actions.REMOVE_WALK:
-      _removeWalk(action.id);
+      debugger;
+      _removeWalk(action.id, action.list);
+      //_getWalks(action.list);
       break;
     case Actions.ADD_WALK:
-      _addWalk(action.id, action.list);
+      debugger;
+      _addWalk(action.id, action.list); //ADD
+      //_getWalks(action.list); //Grab specific list
+      //TODO: Dialog to open only for first entry and switch to specific list
+      //_dialogOpen = true;
       break;
     case Actions.UPDATE_TITLE:
       _updateTitle(action.title);
@@ -115,14 +148,15 @@ const ItineraryStore = Object.assign(EventEmitter.prototype, {
       break;
     case Actions.VIEW_LIST:
       _getWalks(action.id);
+      _currentListId = action.id;
       break;
     case Actions.CREATE_LIST:
       let newList = _createList(action.title);
-      _addWalk(action.id, newList);
+      _addWalk(action.id, newList.id);
       break;
     case Actions.WALK_SELECTED:
       _walkSelected = action.id;
-      break
+      break;
     case Actions.ADD_WALK_DIALOG:
       _walkDialogOpen = !_walkDialogOpen;
       break;

@@ -2,15 +2,17 @@ import Actions from './ItineraryConstants';
 import { dispatch } from './ItineraryDispatcher';
 
 
-//TODO: API call and dispatch walks returned
+//TODO: API call before dispatch
 
 export default {
 
-  remove(id) {
-    dispatch({type: Actions.REMOVE_WALK, id});
+  remove(id, list) {
+    debugger;
+    dispatch({type: Actions.REMOVE_WALK, id, list});
   },
 
-  add(id, list=null) {
+  add(id, list) {
+    debugger;
     dispatch({type: Actions.ADD_WALK, id, list});
   },
 

@@ -8,12 +8,13 @@ import AddWalkToListDialog from './AddWalkToListDialog.jsx';
 import './view.less';
 
 const getItinerary = () => ({
-    walks: ItineraryStore.getItinerary().walks,
-    title: ItineraryStore.getItinerary().title,
-    description: ItineraryStore.getItinerary().description,
-    lists: ItineraryStore.getAllLists(),
-    activeWalk: ItineraryStore.getWalkSelected(),
-    walkDialogOpen: ItineraryStore.getWalkDialog(),
+  walks: ItineraryStore.getItinerary().walks,
+  title: ItineraryStore.getItinerary().title,
+  description: ItineraryStore.getItinerary().description,
+  lists: ItineraryStore.getAllLists(),
+  activeWalk: ItineraryStore.getWalkSelected(),
+  walkDialogOpen: ItineraryStore.getWalkDialog(),
+  dialogOpen: ItineraryStore.getDialog(),
 });
 
 export default class Itinerary extends React.Component {
@@ -36,7 +37,7 @@ export default class Itinerary extends React.Component {
   }
 
   render() {
-    const {walks, title, description} = this.state;
+    const {walks, title, description, dialogOpen, listId} = this.state;
 
     const ItineraryWalks = walks.map(({map, id, title, time}) =>
         <Walk
@@ -47,11 +48,12 @@ export default class Itinerary extends React.Component {
             remove={ItineraryActions.remove}
             walkSelected={ItineraryActions.walkSelected}
             addWalkDialog={ItineraryActions.addWalkDialog}
+            listId={listId}
         />
     );
 
     return (
-      <dialog open id="itinerary">
+      <dialog open={dialogOpen} id="itinerary">
         <AddWalkToListDialog {...this.state} {...ItineraryActions}/>
         <div className="itinerary">
           <section>
