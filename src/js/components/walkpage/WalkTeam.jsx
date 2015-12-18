@@ -1,10 +1,8 @@
 import React from 'react';
 
 const WalkTeam = ({team}) => {
-
   let generateLinks = (member) => {
-
-    let connections = [
+    const connections = [
       {name:'twitter', href:'http://twitter.com/', style:'fa fa-twitter'},
       {name:'facebook',href:'http://facebook.com/', style:'fa fa-facebook'},
       {name:'email',href:'mailto:', style:'fa fa-envelope-o'},
@@ -33,7 +31,7 @@ const WalkTeam = ({team}) => {
   );
 
   return(
-    <section id="walkTeam">
+    <section className="walkTeam">
       <a name="About the Walk Team"></a>
       <h2>About the Walk Team</h2>
       <section>

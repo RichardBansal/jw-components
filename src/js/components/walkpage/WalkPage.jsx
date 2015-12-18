@@ -52,7 +52,7 @@ export default class WalkPage extends React.Component {
 
   render() {
     return (
-    <div id="walkPage">
+    <div className="walkPage">
 
       <WalkHeader
         {...this.state}

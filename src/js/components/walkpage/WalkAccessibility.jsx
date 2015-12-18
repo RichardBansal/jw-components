@@ -11,7 +11,7 @@ const WalkAccessibility = ({checkboxes}) => {
   };
 
   return (
-    <section id="walkAccessibility">
+    <section className="walkAccessibility">
       <a name="Accessibility"></a>
       <h2>Accessibility</h2>
       <ul>
