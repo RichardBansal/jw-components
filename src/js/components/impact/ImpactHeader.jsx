@@ -8,10 +8,13 @@ import DropDown from './DropDown.jsx';
 //{dropdown.map((item,i) => (<li key={i} onClick={(ev)=>{cb(ev.target.value)}}>{item}</li>))}
 //{dropdown.map((item,i) => (<li key={i} onClick={(ev)=>{console.log(item,ev.target.value)}}>{item}</li>))}
 
-const ImpactHeader = ({dropdown}) => (
+//grab impact headers from impact instead of defaultProps
+
+const ImpactHeader = ({impact, currentRegion, changeRegion}) => (
   <div>
     <h2>Jane's Walk By The Numbers</h2>
-    <DropDown list={dropdown} cb={(e)=>{console.log(e)}}/>
+    <h3> {currentRegion.regionName} </h3>
+    <DropDown list={impact.map(d => d.regionName)} cb={d => changeRegion(d)}/>
   </div>
 );
 

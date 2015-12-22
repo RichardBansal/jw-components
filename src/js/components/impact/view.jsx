@@ -1,13 +1,13 @@
 import React from 'react';
 import Impact from './Impact.jsx';
 
-let _dashboard;
+let _impact;
 
-JanesWalk.event.on('dashboard.receive', function(dashboard){
-  _dashboard = dashboard;
+JanesWalk.event.on('impact.receive', function(impact){
+  _impact = impact;
 
   React.render(
-    <Impact dashboard={dashboard}/>
+    <Impact impact={impact}/>,
     document.getElementById('janeswalk-dashboard')
   );
 });
