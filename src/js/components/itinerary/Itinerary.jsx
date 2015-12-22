@@ -8,13 +8,14 @@ import AddWalkToListDialog from './AddWalkToListDialog.jsx';
 import './view.less';
 
 const getItinerary = () => ({
-  walks: ItineraryStore.getItinerary().walks,
-  title: ItineraryStore.getItinerary().title,
-  description: ItineraryStore.getItinerary().description,
+  walks: ItineraryStore.getActiveList().walks,
+  title: ItineraryStore.getActiveList().title,
+  description: ItineraryStore.getActiveList().description,
   lists: ItineraryStore.getAllLists(),
   activeWalk: ItineraryStore.getWalkSelected(),
   walkDialogOpen: ItineraryStore.getWalkDialog(),
   dialogOpen: ItineraryStore.getDialog(),
+  listId: ItineraryStore.getActiveList().id,
 });
 
 export default class Itinerary extends React.Component {
@@ -37,7 +38,7 @@ export default class Itinerary extends React.Component {
   }
 
   render() {
-    const {walks, title, description, dialogOpen, listId} = this.state;
+    const {walks, dialogOpen, listId} = this.state;
 
     const ItineraryWalks = walks.map(({map, id, title, time}) =>
         <Walk
@@ -74,5 +75,5 @@ Itinerary.defaultProps = {
 };
 
 Itinerary.propTypes = {
-  itinerary: React.PropTypes.array,
+  itinerary: React.PropTypes.array.isRequired,
 };

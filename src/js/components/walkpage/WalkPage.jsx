@@ -17,8 +17,8 @@ import {walk} from './WalkStaticData';
 import './view.less';
 
 const walkId = walk.walk.id;
-const itineraryListId = ItineraryStore.getAllLists()[0].id; //for stubbed data, assumed first list is Itinerary
-const favoriteListId = ItineraryStore.getAllLists()[1].id; //for stubbed data, assumed second list is fav
+const itineraryListId = ItineraryStore.getItineraryList().id; //for stubbed data, assumed first list is Itinerary
+const favoriteListId = ItineraryStore.getFavouriteList().id; //for stubbed data, assumed second list is fav
 
 //TODO: Conditionals (? and ||) in getWalk are for stubbed data
 

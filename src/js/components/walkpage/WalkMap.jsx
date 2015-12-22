@@ -17,6 +17,8 @@ export default class WalkMap extends React.Component {
   }
 
   componentDidMount() {
+
+    //TODO: Create a <GoogleMap/> component to generalize use of google maps
     const {map} = this.props;
     const locationLatLng = new google.maps.LatLng(map.markers[0].lat,map.markers[0].lng);
     const infoWindow = new google.maps.InfoWindow({maxWidth: 300});
@@ -51,7 +53,7 @@ export default class WalkMap extends React.Component {
       })
     });
 
-    var routePath = new google.maps.Polyline({
+    const routePath = new google.maps.Polyline({
       path: routeCoordinates,
       strokeColor: '#000000',
       geodesic: true,
