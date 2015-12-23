@@ -15,13 +15,35 @@ export default class CityWalks extends React.Component {
   }
 
   //TODO: Need to pass information
+  //TODO: Need Dashboard Menu visble (add with React Router)
+
+  //Next: Display walks
 
   render() {
-    return (<div>
+
+    const {walks} = this.props.city;
+
+
+    const Walks = walks.map(({map, id, title, time, team}) =>
+      <Walk
+        title={title}
+        meeting={map.markers[0].title}
+        start={time.slots[0][0]}
+        id={id}
+        key={id}
+        team={team}
+      />
+    );
+
+    //NEXT: CityWalksFilter (need to work with City Data further
+
+    return (<div className="cityWalks">
       <h1>CityWalks</h1>
-      <CityWalksMenu/>
-      <CityWalksFilter/>
-      <Walk/>
+      <CityWalksMenu {...this.props}/>
+      <CityWalksFilter {...this.props}/>
+      <ul>
+        {Walks}
+      </ul>
     </div>);
   }
 }
