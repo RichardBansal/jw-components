@@ -53,7 +53,7 @@ export default class ItineraryHeader extends React.Component {
             <input value={newTitle || title} onChange={ev => this.setState({newTitle:ev.target.value})}></input>
           </h2>
           <h4>
-            <input value={newDescription || description} onChange={ev => this.setState({newDescription:ev.target.value})}></input>
+            <textarea value={newDescription || description} onChange={ev => this.setState({newDescription:ev.target.value})}></textarea>
           </h4>
           <span className="update" onClick={ev => this.update()}>Update</span>
           <span className="cancel" onClick={ev => this.cancel()}>Cancel</span>
@@ -65,15 +65,17 @@ export default class ItineraryHeader extends React.Component {
 
           <div className="dropdown">
             <button className="toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="lists">
-              <h2>{title}</h2>
+              <h1 className="walklistTitle">{title}<span className="dropdown-chevron"></span></h1>
             </button>
             <ul className="dropdown-menu" aria-labelledby="lists">
               {lists.map(list => <li key={list.id} onClick={ev => viewList(list.id, ev.target.value)}>{list.title}</li>)}
             </ul>
           </div>
-
-          <h4>{description}</h4>
-          <span className="edit" onClick={ev => this.edit()}>Edit</span>
+          <h5 className="shareUrl"><a href="">janeswalk.org/TuckerMCL/itinerary</a></h5>
+          <h4 className="walklistDescription">
+            <textarea required="required" placeholder="Tell people about it! Start typing here to give your list some commentary." onChange={ev => this.setState({newDescription:ev.target.value})}></textarea>
+            <span className="update">update</span>
+          </h4>
         </header>
       )
     }
@@ -89,5 +91,5 @@ ItineraryHeader.propTypes = {
 
 ItineraryHeader.defaultProps = {
   title:"My Itinerary",
-  description:"View my Jane's Walk Itinerary!"
+  description:"Test",
 };

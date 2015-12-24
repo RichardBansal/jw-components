@@ -40,7 +40,7 @@ export default class AddWalkToListDialog extends React.Component {
           {allLists}
         </ul>
 
-        <input placeholder="Create a new List" value={newList} onChange={ev => {this.setState({newList:ev.target.value})}}></input>
+        <input placeholder="create a new list..." value={newList} onChange={ev => {this.setState({newList:ev.target.value})}}></input>
 
         <button onClick={ev => {createList(activeWalk, newList);this.setState({newList:null})}}>Create</button>
         <button onClick={ev => addWalkDialog()}>Close</button>
