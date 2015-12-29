@@ -74,7 +74,7 @@ export default class ItineraryHeader extends React.Component {
           <h5 className="shareUrl"><a href="">janeswalk.org/TuckerMCL/itinerary</a></h5>
           <h4 className="walklistDescription">
             <textarea required="required" placeholder="Tell people about it! Start typing here to give your list some commentary." onChange={ev => this.setState({newDescription:ev.target.value})}></textarea>
-            <span className="update">update</span>
+            <span className="update">save</span>
           </h4>
         </header>
       )
