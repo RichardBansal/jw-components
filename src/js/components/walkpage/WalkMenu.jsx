@@ -4,7 +4,7 @@ import { dateFormatted } from '../itinerary/ItineraryUtils';
 
 //TODO: Duplicate of Itinerary <Walk/> and WalkPage <WalkHeader/>, refactor/combine components into factory
 //TODO: Make walkMenu sticky 
-//TODO: Add walkAccessibility and walkPublicTransit to walkMenu
+//TODO: Add walkAccessibility, walkPublicTransit and walkParking to walkMenu
 
 const WalkMenu = ({walk}) => {
 

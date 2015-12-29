@@ -73,6 +73,8 @@ export default class WalkPage extends React.Component {
 
       <WalkPublicTransit {...this.state.walk}/>
 
+      //TODO: add a WalkParking section
+
       <WalkStart {...this.state.walk}/>
 
       <WalkTeam {...this.state.walk}/>
