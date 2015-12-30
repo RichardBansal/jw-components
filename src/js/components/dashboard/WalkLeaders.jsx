@@ -15,8 +15,8 @@ export default class WalkLeaders extends React.Component {
     };
   }
 
-  //TODO: Duplicate in CityWalks, perhaps create a Utility for these
-  filterLeaders(filterByDate = 'all') { //TODO: We should have a common filter and list Component
+  //TODO: Duplicate in CityWalks, perhaps create a Utility for these (Post-PR)
+  filterLeaders(filterByDate = 'all') { //TODO: We should have a common filter and list Component (Post-PR)
     //run filters
     //run sort
     //update activeLeaders array this.setState
@@ -30,7 +30,7 @@ export default class WalkLeaders extends React.Component {
         if (filterByDate === 'past') {
           return leader.walks.reduce((p, walk) => {
             if(p) return p;
-            return walk.time.slots[0][0] * 1000 <= currentDate; //TODO: refactor into a function repeated below
+            return walk.time.slots[0][0] * 1000 <= currentDate; //TODO: refactor into a function repeated below (PR)
           }, false);
         }
         if (filterByDate === 'future') {
@@ -71,7 +71,7 @@ export default class WalkLeaders extends React.Component {
     this.setState({activeLeaders, sortBy});
   }
 
-  //TODO: Logic for dateFilter, only one allowed to be pressed
+  //TODO: Logic for dateFilter, only one allowed to be pressed (PR)
 
   render() {
     debugger;
@@ -93,24 +93,6 @@ export default class WalkLeaders extends React.Component {
     </div>);
   };
 }
-
-//const WalkLeaders = ({city}) => {
-//    const {walkLeaders} = city;
-//
-//    const WalkLeaders = walkLeaders.map(wL => (
-//      <WalkLeader {...wL}/>
-//    ));
-//
-//    return (<div>
-//      <h3>Show walk leaders and volunteers with...</h3>
-//      <button>Past Walks</button>
-//      <button>Upcoming Walks</button>
-//      <button>All Walks</button>
-//      <button>Sort Alphabetically by First Name</button>
-//      <button>Sort by Most Walks</button>
-//      {WalkLeaders}
-//    </div>);
-//};
 
 WalkLeaders.PropTypes = {
   //TODO:

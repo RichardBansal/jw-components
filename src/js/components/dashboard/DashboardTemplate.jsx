@@ -3,7 +3,6 @@ import DashboardHeader from './DashboardHeader.jsx';
 import DashboardStore from './DashboardStore';
 import DashboardMenu from './DashboardMenu.jsx';
 
-//TODO: how to pass props or data to DashboardHeader?
 const DashboardTemplate = ( props ) => {
   debugger;
   return (

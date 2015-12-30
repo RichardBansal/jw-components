@@ -14,7 +14,9 @@ const Walk = ({title, start, meeting, id, team}) => {
         <h4>{dateFormatted(start)}</h4>
         <h4>Led by {`${team[0]['name-first']} ${team[0]['name-last']} ${team[0]['email']}`}</h4>
         <h4>Meeting at {meeting}</h4>
-        <span>Publish | Edit | Unpublish </span>
+        <button>Publish</button>
+        <button>Edit</button>
+        <button>Unpublish</button>
       </div>
     </li>
   );

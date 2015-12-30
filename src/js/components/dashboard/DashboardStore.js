@@ -5,7 +5,7 @@ import {dashboard} from './DashboardStaticData';
 
 const {city, walks, resources, blog} = dashboard;
 
-//TODO: Review against ItineraryStore for consistency of format
+//TODO: Review against ItineraryStore for consistency of format (PR)
 
 const DashboardStore = Object.assign(EventEmitter.prototype, {
   emitChange() {
@@ -22,7 +22,7 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
 
   getCityData() {
     const {latlng, cityOrganizer, name, users, walks, impact} = city;
-    return {latlng, cityOrganizer, name, users, walks, impact}; //TODO: What is the best way to do this?
+    return {latlng, cityOrganizer, name, users, walks, impact}; //TODO: What is the best way to do this? (PR)
   },
 
   getCityWalks() {
@@ -43,11 +43,15 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
     return resources;
   },
 
+  getMyBlogPosts() {
+    return blog;
+  },
+
   getLatestPost() {
     return {post:blog[0]};
   },
 
-  //TODO: dispatcher index
+  //TODO: dispatcher index (PR)
 
 });
 

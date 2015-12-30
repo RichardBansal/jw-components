@@ -10,19 +10,14 @@ import DashboardMenu from './DashboardMenu.jsx';
 import CityWalks from './CityWalks.jsx';
 import WalkLeaders from './WalkLeaders.jsx';
 import MyWalks from './MyWalks.jsx';
+import ImpactReport from './ImpactReport.jsx'; //TODO: Data for ImpactReport
 import DashboardSummary from './DashboardSummary.jsx';
 import DashboardResources from './DashboardResources.jsx';
 import DashboardTemplate from './DashboardTemplate.jsx';
+import MyBlogPosts from './MyBlogPosts.jsx';
 
 import {dashboard} from './DashboardStaticData';
 import './view.less';
-
-//const getDashboard = (props) => ({
-//  dashboard: props.dashboard || dashboard,
-//});
-
-// Dashboard Template
-// Dashboard MainPage
 
 const DashboardPage = () => {
   return (
@@ -31,7 +26,7 @@ const DashboardPage = () => {
       <DashboardResources {...DashboardStore.getResources()}/>
     </div>
   );
-}
+};
 
 const Dashboard = () => (
   <Router>
@@ -41,35 +36,11 @@ const Dashboard = () => (
       <Route path="myWalks" component={MyWalks}/>
       <Route path="walkLeaders" component={WalkLeaders}/>
       <Route path="resources" component={DashboardResources}/>
-      //TODO: Add ImpactReport.jsx as a component here
+      <Route path="posts" component={MyBlogPosts}/>
+      <Route path="impact" component={ImpactReport}/>
     </Route>
   </Router>
 );
-
-//export default class Dashboard extends React.Component {
-//  constructor(props, ...args) {
-//    super(props, ...args);
-//  }
-//
-//  render() {
-//    return <div></div>;
-//  }
-//}
-
-//constructor(props, ...args) {
-//  super(props, ...args);
-//  this.state = getDashboard(props);
-//}
-//<DashboardHeader {...this.state.dashboard}/>
-//<DashboardMenu {...this.state.dashboard}/>
-//<CityWalks {...this.state.dashboard}/>
-//<WalkLeaders {...this.state.dashboard}/>
-//<MyWalks {...this.state.dashboard}/>
-//<DashboardSummary {...this.state.dashboard.city}/>
-//<DashboardResources {...this.state.dashboard.resources}/>
-//render() {
-//  debugger;
-
 
 Dashboard.PropTypes = {
   //TODO:

@@ -2,13 +2,11 @@ import React from 'react';
 
 import { dateFormatted } from './../itinerary/ItineraryUtils';
 
-//TODO: Common component from <Itinerary/> <Walk/>, List component should be generic with configuration specified (maybe a mixing or factory)
+//TODO: Common component from <Itinerary/> <Walk/>, List component should be generic with configuration specified (maybe a mixing or factory) (Post-PR)
 
-//TODO: Need to show volunteers as well - so static data generated is not correct (confirm with json data provided before proceeding with any changes
+//TODO: Need to show volunteers as well - so static data generated is not correct (confirm with json data provided before proceeding with any changes (PR)
 
-//TODO: Grab Email
-
-const Walk = ({firstName, lastName, walks}) => {
+const Walk = ({firstName, lastName, walks, email}) => {
 
   const Walks = walks.map(w => {
     const fullYear = (new Date(w.time.slots[0][0]*1000)).getFullYear();
@@ -19,7 +17,7 @@ const Walk = ({firstName, lastName, walks}) => {
     <li>
       <div className="walk">
         <h3>{`${firstName} ${lastName}`}</h3>
-        <h3>email</h3>
+        <h3>{email}</h3>
         <ul>
           <h4>
             {Walks}

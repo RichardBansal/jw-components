@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//TODO: WalkMap.jsx already exists, review and re-use, you have a few usages of the google map that can be combined
+//TODO: WalkMap.jsx already exists, review and re-use, you have a few usages of the google map that can be combined (Post-PR)
 
 const InfoWindow = ({title, shortDescription}) => (
   <span>
@@ -88,7 +88,7 @@ export default class WalksMap extends React.Component {
 
     debugger;
 
-    //TODO: Create a <GoogleMap/> component to generalize use of google maps
+    //TODO: Create a <GoogleMap/> component to generalize use of google maps (Post-PR)
     //const {city} = this.props;
     const {latlng} = this.props;
     let {activeWalks, googleMapMarkers} = this.state;

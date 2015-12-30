@@ -518,6 +518,7 @@ const impact = [
 ];
 
 //TODO: Generated for now, assume this will be available in JSON data
+//TODO: Walks json data needs to have country, cityName
 const generateWalkLeaders = () => {
   //go through each walk, generate a list of leaders
   //[{firstName,lastName, walks[ids]}]
@@ -529,7 +530,7 @@ const generateWalkLeaders = () => {
         if (role.includes('leader') || role.includes('organizer')) {
           let leaderExists = walkLeaders.findIndex(l => l.firstName === m['name-first'] && l.lastName === m['name-last']);
           if (leaderExists !== -1) walkLeaders[leaderExists].walks.push(w);
-          else walkLeaders.push({firstName:m['name-first'], lastName:m['name-last'], walks: [w]});
+          else walkLeaders.push({firstName:m['name-first'], lastName:m['name-last'], walks: [w], email:m['email']});
         }
       });
     }
@@ -550,9 +551,13 @@ const dashboard = {
     walkLeaders: generateWalkLeaders().slice(0,10),
     impact: impact.find(r => r.regionName === 'Toronto'),
   },
-  walks: walks.slice(0,10),
+  walks: walks.slice(11,20),
   step: {}, //profile next steps
-  blog: [{id:'1',url:'http://janeswalk.org/canada/toronto/toronto-blog/fall-scarborough-poetry-walk-celebrates-culture-days-2015/',name:'Fall Scarborough Poetry Walk Celebrates Culture Days 2015'}], //ignore for now
+  blog: [
+    {id:'1',url:'http://janeswalk.org/canada/toronto/toronto-blog/fall-scarborough-poetry-walk-celebrates-culture-days-2015/',name:'Fall Scarborough Poetry Walk Celebrates Culture Days 2015'},
+    {id:'2',url:'http://janeswalk.org/canada/toronto/toronto-blog/fall-scarborough-poetry-walk-celebrates-culture-days-2015/',name:'Fall Scarborough Poetry Walk Celebrates Culture Days 2015'},
+    {id:'3',url:'http://janeswalk.org/canada/toronto/toronto-blog/fall-scarborough-poetry-walk-celebrates-culture-days-2015/',name:'Fall Scarborough Poetry Walk Celebrates Culture Days 2015'},
+  ], //ignore for now
   resources: {
     cityOrganizers:[
       {

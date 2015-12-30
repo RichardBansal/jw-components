@@ -6,8 +6,8 @@ const DashboardMenu = ({name, style}) => {
   const menuItems = [ { display: `${name} Walks`, link: '/cityWalks'},
     { display:'My Walks', link: '/myWalks'},
     { display:'Walk Leaders and Volunteers', link: '/walkLeaders'},
-    { display:'TODO: My Blog Posts', link: ''},
-    { display:'TODO: Impact Report Builder', link: ''},
+    { display:'My Blog Posts', link: '/posts'},
+    //{ display:'Impact Report Builder', link: '/impact'}, //TODO: Complete with Data
     { display:'Resources', link: 'resources'}
   ];
 
