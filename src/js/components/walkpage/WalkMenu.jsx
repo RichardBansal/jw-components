@@ -8,8 +8,6 @@ import WalkParking from './WalkParking.jsx';
 //TODO: Make walkMenu sticky 
 //TODO: Add walkAccessibility, walkPublicTransit, and walkParking to walkMenu
 //TODO: Make walkMenu sticky - will complete after Dashboard
-//TODO: Style walkAccessibility and walkPublicTransit to walkMenu
-//TODO: Style walkParking section
 
 const WalkMenu = ({walk,filters}) => {
 
