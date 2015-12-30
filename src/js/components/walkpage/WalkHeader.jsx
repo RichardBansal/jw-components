@@ -23,6 +23,13 @@ const WalkHeader = ({walk, id, remove, add, existsInItinerary, existsInFavourite
 
   return(
     <section className="walkHeader">
+    <section className="coverImage">
+      <ul className="breadcrumb">
+        <li><a href="/"><i className="fa fa-home"></i></a></li>
+        <li><a href="/canada/toronto/">Toronto, ON walks</a></li>
+        <li className="active">The History of Muslims in Toronto - A Special December Jane&rsquo;s Walk</li>
+      </ul>
+    </section>
       <h1>{title}{addToFavourites}</h1>
       <h4>Led By {walkLeader['name-first']} {walkLeader['name-last']} - {dateFormatted(time.slots[0][0])}{addToItinerary}</h4>
       <h4>Meeting at {map.markers[0].title}</h4>
