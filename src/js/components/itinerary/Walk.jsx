@@ -4,11 +4,11 @@ import React from 'react';
 const Walk = ({title, start, meeting, remove, id, listId, walkSelected, addWalkDialog}) => {
   //debugger;
 
-  let removeButton = remove ? <button className="action removeWalk" onClick={(ev) => remove(id, listId, ev.target.value)}>Remove</button> : null;
-  let addButton = addWalkDialog ? <button className="action addWalk" onClick={(ev) => { addWalkDialog(); walkSelected(id, ev.target.value);}}>Add To</button> : null;
+  let removeButton = remove ? <button className="action removeWalk" onClick={(ev) => remove(id, listId, ev.target.value)}></button> : null;
+  let addButton = addWalkDialog ? <button className="action addWalk" onClick={(ev) => { addWalkDialog(); walkSelected(id, ev.target.value);}}></button> : null;
 
   return(
-    <li>
+    <li className="walklistItem">
       <div className="walk">
         <h3>{title}</h3>
         <h4>{dateFormatted(start)}</h4>

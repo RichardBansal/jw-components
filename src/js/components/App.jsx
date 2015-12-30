@@ -12,7 +12,7 @@ import Dashboard from './dashboard/Dashboard.jsx';
 export default class App extends React.Component {
   render(){
     return (<div>
-      <Dashboard/>
+      <WalkPage />
     </div>);
   }
 };
