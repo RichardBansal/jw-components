@@ -118,12 +118,48 @@ body {
         display: block;
       }
     }
+    .walk-menu-navigation {
+      padding: 0;
+      font-size: 13px;
+      h2 {
+        margin: 10px 0 0;
+      }
+      h2, ul {
+        font-size: 13px;
+      }
+      ul {
+        margin-top: 3px;
+      }
+      ul li::before {
+        font-size: 22px;
+      }
+    }
   }
 
   > .walkHeader {
-    padding: 50px 70px;
     border-bottom: 1px solid lightgray;
+    padding-bottom: 50px;
+    .coverImage {
+      height: 350px;
+      background-image: url('http://www.tuckermclachlan.com/janeswalk/himy_walkphoto.jpg');
+      background-size: cover;
+    }
+    .breadcrumb {
+      position: absolute;
+      border-radius: 0;
+      border-bottom-right-radius: 6px;
+      background: #fff;
+      li {
+        a {
+          color: #6BADFD;
+        }
+      }
+    }
+    h1, h4 {
+      padding-left: 70px;
+    }
     h1 {
+      padding-top: 30px;
       font-weight: 300;
       width: 80%;
       font-size: 38px;
@@ -155,7 +191,7 @@ body {
       font-size: 16px;
     }
   }
-  .walkDescription, .walkRoute, .walkAccessibility, .walkPublicTransit, .walkStart, .walkTeam {
+  .walkDescription, .walkRoute, .walkAccessibility, .walkPublicTransit, .walkStart, .walkTeam, .walkParking {
     padding: 25px 70px 0;
     width: 65%;
     h2 {
@@ -209,7 +245,7 @@ body {
       }
     }
   }
-  .walkPublicTransit, .walkStart {
+  .walkPublicTransit, .walkStart, .walkParking {
     font-size: 20px;
     font-weight: 300;
   }
