@@ -8,7 +8,11 @@ const WalkMenu = ({walk}) => {
 
   let {checkboxes, title, map, time, team} = walk;
   const walkLeader = team.find(member => member.role === 'walk-leader');
+
+  //TODO: Filter lookup data is available, so the below can be replaced
+  // TODO Convert below to a Utility to use in multiple places like <Dashboard/> <CityWalksFilter/>
   const tags = Object.keys(checkboxes).filter(item => item.includes('theme-civic'));
+
 
   const tagsRef = {
     'theme-civic-goodneighbour': 'Community',

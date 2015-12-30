@@ -4,6 +4,8 @@ const WalkAccessibility = ({checkboxes}) => {
 
   const accessibilityKeys = Object.keys(checkboxes).filter(item => item.includes("accessible"));
 
+  //TODO: Filter lookup data is available, so the below can be replaced
+  //TODO: Filter data is given, so the below can be replaced
   const accessibility = {
     "accessible-familyfriendly":"Family friendly",
     "accessible-seniors":"Senior Friendly",

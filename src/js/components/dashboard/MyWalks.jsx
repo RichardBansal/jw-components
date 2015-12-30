@@ -5,7 +5,13 @@ import CityWalksFilter from './CityWalksFilters.jsx';
 import WalksMap from './WalksMap.jsx';
 import DashboardStore from './DashboardStore';
 
+//TODO: This is an almost exact duplicate of CityWalks, except the state and 'My Walks' text, refactor to remove duplication
+
 //TODO: Walk common component found in <Itinerary/> and <WalkPage/>, Refactor to a single component or mixin
+
+//TODO: REFACTOR Specify the walks, so props.activeWalks or something that you want to pass in
+//the rest can stay the same
+
 import Walk from './Walk.jsx';
 
 export default class CityWalks extends React.Component {
@@ -13,16 +19,16 @@ export default class CityWalks extends React.Component {
     super(props, ...args);
     this.state = {
       activeFilters: props.activeFilters || [],
-      activeWalks: DashboardStore.getCityWalks().walks || [],
+      activeWalks: DashboardStore.getMyWalks() || [],
       currentView: 'list',
     };
   }
 
-  //TODO: Hide Past Walks | Exports Spreadsheet (profile/controller)
+  //TODO: Hide Past Walks | Exports Spreadsheet
   //TODO: Correct: This is doing an OR operation, not an AND operation
   filterWalks() {
     const {activeFilters, activeWalks} = this.state;
-    const {walks} = DashboardStore.getCityWalks();
+    const {walks} = DashboardStore.getMyWalks();
 
     if (!activeFilters.length) this.setState({activeWalks: walks});
     else {
@@ -65,7 +71,6 @@ export default class CityWalks extends React.Component {
     //TODO: Remove Past Walks and Export Spreadsheet
 
     return (<div className="cityWalks">
-      <h1>CityWalks</h1>
       <button onClick={()=>this.setState({currentView: 'list'})}>List</button>
       <button onClick={()=>this.setState({currentView: 'map'})}>Map</button>
       <button>Hide Past Walks</button>
@@ -73,7 +78,7 @@ export default class CityWalks extends React.Component {
       <CityWalksFilter
         {...this.props}
         {...this.state}
-        {...DashboardStore.getCityWalks()}
+        {...DashboardStore.getCityWalks()} //TODO: to grab filters
         addFilter={(e)=>{activeFilters.push(e); this.setState({activeFilters}); this.filterWalks()}}
         removeFilter={(e)=>{debugger; activeFilters.splice(activeFilters.findIndex(f => f === e), 1); this.setState({activeFilters}); this.filterWalks()}}
       />
