@@ -1,7 +1,7 @@
 import React from 'react';
 
 //import CityWalksMenu from './CityWalksMenu.jsx';
-import WalksFilter from './CityWalksFilters.jsx';
+import WalksFilter from './WalksFilter.jsx';
 import WalksMap from './WalksMap.jsx';
 import DashboardStore from './DashboardStore';
 

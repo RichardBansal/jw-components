@@ -9,12 +9,12 @@ import React from 'react';
 const DashboardSummary = ({name, walkLeaders, walks, users, impact}) => {
   debugger;
   return (
-    <div>
+    <section>
       <h2>Recap</h2>
       <h4>{`${walkLeaders.length} ${name} walk leaders led ${walks.length} walks as a part of Jane's Walk ${(new Date()).getFullYear()} reaching more than ${users.length} participants` }</h4>
 
       <h4>{`Since ${name} first participated in Jane's Walk in ${impact.walkLeaders[0].year}, 87 walk leaders have led 121 Jane's Walks`}</h4>
-    </div>
+    </section>
   );
 };
 

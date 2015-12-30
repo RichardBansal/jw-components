@@ -50,8 +50,6 @@ export default class WalkLeaders extends React.Component {
     const {activeLeaders} = this.state;
     const {walkLeaders} = DashboardStore.getWalkLeadersAndVolunteers();
 
-    debugger;
-
     if (this.state.sortBy && sortBy === this.state.sortBy) {
       this.setState({activeLeaders: walkLeaders.slice(), sortBy: null});
       return;
@@ -74,14 +72,14 @@ export default class WalkLeaders extends React.Component {
   //TODO: Logic for dateFilter, only one allowed to be pressed (PR)
 
   render() {
-    debugger;
+
     const {activeLeaders} = this.state;
     const {name} = DashboardStore.getCityData();
 
     const WalkLeaders = activeLeaders.map(wL => (<WalkLeader {...wL}/> ));
 
     //TODO: Show button is active for onClick
-    return (<div>
+    return (<section>
       <h2>{name} Walk Leaders and Volunteers</h2>
       <h3>Show walk leaders and volunteers with...</h3>
       <button onClick={() => this.filterLeaders('past')}>Past Walks</button>
@@ -90,7 +88,7 @@ export default class WalkLeaders extends React.Component {
       <button onClick={() => this.sortLeaders('alphabetical')}>Sort Alphabetically by First Name</button>
       <button onClick={() => this.sortLeaders('totalWalks')}>Sort by Most Walks</button>
       {WalkLeaders}
-    </div>);
+    </section>);
   };
 }
 

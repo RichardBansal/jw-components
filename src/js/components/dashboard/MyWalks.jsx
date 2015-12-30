@@ -6,9 +6,9 @@ import Walks from './Walks.jsx';
 //TODO: Walk common component found in <Itinerary/> and <WalkPage/>, Refactor to a single component or mixin (Post-PR)
 
 const MyWalks = () => (
-  (<div>
+  (<section>
     <Walks walks={DashboardStore.getMyWalks()}/>
-  </div>)
+  </section>)
 )
 
 MyWalks.PropTypes = {

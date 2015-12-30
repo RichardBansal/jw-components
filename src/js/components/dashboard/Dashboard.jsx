@@ -21,10 +21,10 @@ import './view.less';
 
 const DashboardPage = () => {
   return (
-    <div>
+    <section>
       <DashboardSummary {...DashboardStore.getWalkLeadersAndVolunteers()} {...DashboardStore.getCityData()}/>
       <DashboardResources {...DashboardStore.getResources()}/>
-    </div>
+    </section>
   );
 };
 
