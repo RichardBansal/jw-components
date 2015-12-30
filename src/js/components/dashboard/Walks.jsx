@@ -1,15 +1,13 @@
 import React from 'react';
 
-//import CityWalksMenu from './CityWalksMenu.jsx';
 import WalksFilter from './WalksFilter.jsx';
 import WalksMap from './WalksMap.jsx';
 import DashboardStore from './DashboardStore';
 
 //TODO: Walk common component found in <Itinerary/> and <WalkPage/>, Refactor to a single component or mixin (Post-PR)
-
 import Walk from './Walk.jsx';
 
-export default class CityWalks extends React.Component {
+export default class Walks extends React.Component {
   constructor(props, ...args) {
     super(props, ...args);
     this.state = {
@@ -22,7 +20,7 @@ export default class CityWalks extends React.Component {
   //TODO: Hide Past Walks | Exports Spreadsheet (PR)
   //TODO: Correct: This is doing an OR operation, not an AND operation (PR)
   filterWalks() {
-    const {activeFilters, activeWalks} = this.state;
+    const {activeFilters} = this.state;
     const {walks} = DashboardStore.getMyWalks();
 
     if (!activeFilters.length) this.setState({activeWalks: walks});
@@ -81,6 +79,6 @@ export default class CityWalks extends React.Component {
   }
 }
 
-CityWalks.PropTypes = {
+Walks.PropTypes = {
   //TODO:
 };
