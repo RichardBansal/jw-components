@@ -50,7 +50,9 @@ export default class WalkPage extends React.Component {
   _onChange() {
     this.setState(getWalk);
   }
-
+//<WalkPublicTransit {...this.state.walk} style="walk-page"/>
+//<WalkParking {...this.state.walk} style="walk-page"/>
+//<WalkAccessibility {...this.state.walk} {...this.state.filters} style="walk-page"/>
   render() {
     return (
     <div className="walkPage">
@@ -70,16 +72,10 @@ export default class WalkPage extends React.Component {
 
       <WalkRoute {...this.state.walk}/>
 
-      <WalkAccessibility {...this.state.walk} {...this.state.filters} style="walk-page"/>
-
-      <WalkPublicTransit {...this.state.walk} style="walk-page"/>
-
-      <WalkParking {...this.state.walk} style="walk-page"/>
-
       <WalkStart {...this.state.walk}/>
 
       <WalkTeam {...this.state.walk}/>
-    
+
     </div>);
   }
 };
