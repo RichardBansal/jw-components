@@ -89,7 +89,6 @@ export default class WalksMap extends React.Component {
     debugger;
 
     //TODO: Create a <GoogleMap/> component to generalize use of google maps (Post-PR)
-    //const {city} = this.props;
     const {latlng} = this.props;
     let {activeWalks, googleMapMarkers} = this.state;
 

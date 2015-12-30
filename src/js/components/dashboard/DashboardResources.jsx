@@ -6,6 +6,7 @@ import DashboardStore from './DashboardStore';
 const DashboardResources = () => {
   const {cityOrganizers, videoTips, files, featuredWalks} = DashboardStore.getResources();
   return (
+
     <section>
       <h2>Resources</h2>
 
@@ -101,3 +102,4 @@ export default DashboardResources;
 //  -                    <?php } ?>
 //  -                </ul>
 //  -            </div>
+//=======
