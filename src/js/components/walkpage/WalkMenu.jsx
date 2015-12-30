@@ -3,6 +3,9 @@ import { dateFormatted } from '../itinerary/ItineraryUtils';
 
 
 //TODO: Duplicate of Itinerary <Walk/> and WalkPage <WalkHeader/>, refactor/combine components into factory
+//TODO: Make walkMenu sticky 
+//TODO: Add walkAccessibility and walkPublicTransit to walkMenu
+//TODO: add a walkParking section
 
 const WalkMenu = ({walk}) => {
 
@@ -12,7 +15,6 @@ const WalkMenu = ({walk}) => {
   //TODO: Filter lookup data is available, so the below can be replaced
   // TODO Convert below to a Utility to use in multiple places like <Dashboard/> <CityWalksFilter/>
   const tags = Object.keys(checkboxes).filter(item => item.includes('theme-civic'));
-
 
   const tagsRef = {
     'theme-civic-goodneighbour': 'Community',
@@ -28,7 +30,7 @@ const WalkMenu = ({walk}) => {
         <h5>{title}</h5>
         <h6>Led By {walkLeader['name-first']} {walkLeader['name-last']} </h6>
         <h6>{dateFormatted(time.slots[0][0])}</h6>
-        <h6>Meeting at {map.markers[0].title}</h6>
+        <h6>Meeting at {map.markers[0].title}</h6> 
       </header>
       <section className="menu">
         <ul>
@@ -36,7 +38,7 @@ const WalkMenu = ({walk}) => {
         </ul>
       </section>
       <section className="tags">
-        {tags.map((tag,i) => <span key={i}>#{tagsRef[tag]}, </span>)}
+        {tags.map((tag,i) => <span className="tag" key={i}>#{tagsRef[tag]}</span>)}
       </section>
     </section>
   );

@@ -55,8 +55,9 @@ export default class Itinerary extends React.Component {
     );
 
     return (
-      <dialog open={dialogOpen} id="itinerary">
+      <dialog open id="itinerary">
         <AddWalkToListDialog {...this.state} {...ItineraryActions}/>
+        <img id="name_donate" src="http://tuckermclachlan.com/janeswalk/namedonate.png"/>
         <div className="itinerary">
           <section>
             <ItineraryHeader {...this.state} {...ItineraryActions}/>
