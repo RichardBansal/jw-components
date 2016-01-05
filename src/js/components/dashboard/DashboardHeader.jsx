@@ -1,26 +1,25 @@
 import React from 'react';
 
-//TODO: Dynamic based on city
-//TODO: <a href="mailto:kate.watanabe@janeswalk.org?subject=I%20would%20like%20to%20submit%20a%20story%20to%20the%20Toronto%2C%20ON%20blog&amp;body=Please%20begin%20writing%20your%20story%20below%3A%0A%0A%0A" target="_blank" class="btn btn-primary btn-small">Share my story</a>
-//TODO: Missing data to add to blog post
-
-const DashboardHeader = ({cityOrganizer, name, post}) => {
+const DashboardHeader = ({cityOrganizer, blogUrl, name, post}) => {
   return (
     <header>
       <h3>{name.toUpperCase()} Organizer Dashboard</h3>
-      <h4>Hi, {`${cityOrganizer.firstName}!`} </h4>
+      <h4>Hi, {cityOrganizer.firstName}! </h4>
       <section>
         <h4>Latest Blog Post</h4>
         <a href={post.url}>{post.name}</a>
       </section>
-      <a href={`mailto:${cityOrganizer.email}`}><button>Share My Story</button></a>
-      <a href={`http://janeswalk.org/canada/${name}/${name}-blog/`}><button>See All Posts</button></a>
+      <a href={`mailto:${cityOrganizer.email}?subject=${encodeURI(`I would like to submit a story to the ${name} blog`)}`}><button>Share My Story</button></a>
+      <a href={blogUrl}><button>See All Posts</button></a>
     </header>
   );
 };
 
 DashboardHeader.PropTypes = {
-  //TODO:
+  cityOrganizer: React.PropTypes.object.isRequired,
+  blogUrl: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string.isRequired,
+  post: React.PropTypes.object.isRequired,
 };
 
 export default DashboardHeader;

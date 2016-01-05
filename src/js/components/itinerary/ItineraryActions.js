@@ -1,7 +1,6 @@
 import Actions from './ItineraryConstants';
 import { dispatch } from './ItineraryDispatcher';
 
-
 //TODO: API call before dispatch
 
 export default {

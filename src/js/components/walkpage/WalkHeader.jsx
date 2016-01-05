@@ -4,7 +4,7 @@ import { dateFormatted } from '../itinerary/ItineraryUtils';
 //TODO: Duplicate of Itinerary <Walk/>
 //TODO: Issue with Favourite being removed on first attempt (works fine for Itinerary)
 
-const WalkHeader = ({walk, id, remove, add, existsInItinerary, existsInFavourites, favoriteListId, itineraryListId}) => {
+const WalkHeader = ({city, walk, id, remove, add, existsInItinerary, existsInFavourites, favoriteListId, itineraryListId}) => {
   debugger;
   const favButton = () => {
     if (existsInFavourites) return <button className="removeFavourite" onClick={()=>remove(id,favoriteListId)}> </button>;
@@ -19,6 +19,7 @@ const WalkHeader = ({walk, id, remove, add, existsInItinerary, existsInFavourite
   const addToFavourites = favButton();
   const addToItinerary = addButton();
   const {title, map, time, team} = walk;
+  const {url, name} = city;
   const walkLeader = team.find(member => member.role === 'walk-leader');
 
   return(
@@ -26,8 +27,8 @@ const WalkHeader = ({walk, id, remove, add, existsInItinerary, existsInFavourite
     <section className="coverImage">
       <ul className="breadcrumb">
         <li><a href="/"><i className="fa fa-home"></i></a></li>
-        <li><a href="/canada/toronto/">Toronto, ON walks</a></li>
-        <li className="active">The History of Muslims in Toronto - A Special December Jane&rsquo;s Walk</li>
+        <li><a href={url}>{`${name} walks`}</a></li>
+        <li className="active">{title}</li>
       </ul>
     </section>
       <h1>{title}{addToFavourites}</h1>

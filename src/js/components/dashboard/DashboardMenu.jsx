@@ -1,15 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const DashboardMenu = ({name, style}) => {
-  //TODO: Are the menu items based on available links for each CO or common?
-  const menuItems = [ { display: `${name} Walks`, link: '/cityWalks'},
-    { display:'My Walks', link: '/myWalks'},
-    { display:'Walk Leaders and Volunteers', link: '/walkLeaders'},
-    { display:'My Blog Posts', link: '/posts'},
-    //{ display:'Impact Report Builder', link: '/impact'}, //TODO: Complete with Data
-    { display:'Resources', link: 'resources'}
-  ];
+const DashboardMenu = ({name, style, menuItems}) => {
 
   const menu = menuItems.map((item,i) => (<li key={i}><Link to={item.link}>{item.display}</Link></li>));
 
@@ -21,7 +13,8 @@ const DashboardMenu = ({name, style}) => {
 };
 
 DashboardMenu.PropTypes = {
-  //TODO:
+  name: React.PropTypes.string.isRequired,
+  style: React.PropTypes.string.isRequired,
 };
 
 export default DashboardMenu;

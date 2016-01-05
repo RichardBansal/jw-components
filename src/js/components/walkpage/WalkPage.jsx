@@ -25,6 +25,7 @@ const getWalk = (props) => ({
   //TODO: Conditionals (? and ||) in getWalk are for stubbed data
   walk: props.walk || walk.walk,
   page: props.page || walk.page,
+  city: props.city || walk.city,
   id: props.walk ? props.walk.id : walkId,
   filters: props.filters || filters,
   existsInItinerary : ItineraryStore.existsInList(itineraryListId, props.walk ? props.walk.id : walkId),
