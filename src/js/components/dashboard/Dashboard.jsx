@@ -31,7 +31,7 @@ const Dashboard = () => (
     <Route path="/" component={DashboardTemplate}>
       <IndexRoute component={DashboardPage}/>
       <Route path="cityWalks" component={Walks}/>
-      <Route path="myWalks" component={Walks}/>
+      <Route path="userWalks" component={Walks}/>
       <Route path="walkLeaders" component={WalkLeaders}/>
       <Route path="resources" component={DashboardResources} {...DashboardStore.getResources()}/>
       <Route path="posts" component={MyBlogPosts}/>

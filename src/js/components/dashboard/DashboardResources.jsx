@@ -1,12 +1,10 @@
 import React from 'react';
 import DashboardStore from './DashboardStore';
 
-const grabProps = ({route}) => {
-  return {cityOrganizers, videoTips, files, featuredWalks} = route
-};
 
-const DashboardResources = ({route}) => {
-  const {cityOrganizers, videoTips, files, featuredWalks} = route;
+//TODO* Fix {routes} was working before
+const DashboardResources = () => {
+  const {cityOrganizers, videoTips, files, featuredWalks} = DashboardStore.getResources();
   return (
     <section>
       <h2>Resources</h2>

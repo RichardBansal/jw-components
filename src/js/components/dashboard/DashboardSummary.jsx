@@ -1,5 +1,8 @@
 import React from 'react';
 
+
+const t2 = (a,b,c) => (a);
+
 //t2('Walk Leader: ', 'Walk Leaders: ', count($w->walkLeaders));
 const DashboardSummary = ({year, walkLeaders, walks, participants, originalYear, totalWalkLeaders, totalWalks, name }) => {
   return (
