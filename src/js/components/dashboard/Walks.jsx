@@ -63,8 +63,8 @@ export default class Walks extends React.Component {
     //TODO: Remove Past Walks and Export Spreadsheet (PR)
 
     return (<div className="cityWalks">
-      <button onClick={()=>this.setState({currentView: 'list'})}>List</button>
-      <button onClick={()=>this.setState({currentView: 'map'})}>Map</button>
+      <button className="walksListButton" onClick={()=>this.setState({currentView: 'list'})}>List</button>
+      <button className="walksMapButton" onClick={()=>this.setState({currentView: 'map'})}>Map</button>
       <button>Hide Past Walks</button>
       <button>Export Spreadsheet</button>
       <WalksFilter

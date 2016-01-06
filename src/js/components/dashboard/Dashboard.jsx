@@ -28,6 +28,9 @@ const DashboardPage = () => {
   );
 };
 
+//TODO: Add classes to set up accordion style
+//TODO: Issue with filters, + separating theme filters, region filters, and accessibility filters
+
 const Dashboard = () => (
   <Router>
     <Route path="/" component={DashboardTemplate}>

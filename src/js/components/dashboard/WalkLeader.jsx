@@ -15,9 +15,8 @@ const Walk = ({firstName, lastName, walks, email}) => {
 
   return (
     <li>
-      <div className="walk">
-        <h3>{`${firstName} ${lastName}`}</h3>
-        <h3>{email}</h3>
+      <div className="walkLeader">
+        <h3>{`${firstName} ${lastName}`} <span className="walkLeaderEmail">{email}</span></h3>
         <ul>
           <h4>
             {Walks}

@@ -79,14 +79,12 @@ export default class WalkLeaders extends React.Component {
     const WalkLeaders = activeLeaders.map(wL => (<WalkLeader {...wL}/> ));
 
     //TODO: Show button is active for onClick
-    return (<section>
-      <h2>{name} Walk Leaders and Volunteers</h2>
-      <h3>Show walk leaders and volunteers with...</h3>
-      <button onClick={() => this.filterLeaders('past')}>Past Walks</button>
-      <button onClick={() => this.filterLeaders('future')}>Upcoming Walks</button>
-      <button onClick={() => this.filterLeaders()}>All Walks</button><br/>
-      <button onClick={() => this.sortLeaders('alphabetical')}>Sort Alphabetically by First Name</button>
-      <button onClick={() => this.sortLeaders('totalWalks')}>Sort by Most Walks</button>
+    return (<section className="dashboardWalkLeaders">
+      <button className="buttonAllWalks" onClick={() => this.filterLeaders()}>All Walks</button>
+      <button className="buttonUpcomingWalks" onClick={() => this.filterLeaders('future')}>Upcoming Walks Only</button>
+      <button className="buttonPastWalks" onClick={() => this.filterLeaders('past')}>Past Walks Only</button><br/>
+      <button className="buttonSortAlphabetically" onClick={() => this.sortLeaders('alphabetical')}>Sort Alphabetically by First Name</button>
+      <button className="buttonSortByMostWalks" onClick={() => this.sortLeaders('totalWalks')}>Sort by Most Walks</button>
       {WalkLeaders}
     </section>);
   };
