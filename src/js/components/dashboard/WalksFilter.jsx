@@ -21,7 +21,7 @@ const WalksFilter = ({filters, activeFilters, removeFilter, addFilter}) => {
   const ActiveFilters = activeFilters.map(f => <button onClick={e => removeFilter(f, e.target.value)}>{f}</button>);
 
   return (
-    <div>
+    <div className="walksFilter">
       {ActiveFilters}
       {Filters}
     </div>

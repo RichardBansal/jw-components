@@ -6,7 +6,7 @@ import DashboardMenu from './DashboardMenu.jsx';
 //TODO: Pass in as properties, rather than loading directly from the store, if it makes sense.
 const DashboardTemplate = ( props ) => {
   return (
-    <section>
+    <section className="dashboard">
       <DashboardHeader {...DashboardStore.getCityData()} {...DashboardStore.getLatestPost()}/>
       <DashboardMenu style="dashboard-page" {...DashboardStore.getCityData()} {...DashboardStore.getMenuItems()}/>
       {props.children}

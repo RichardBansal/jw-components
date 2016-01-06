@@ -76,7 +76,6 @@ export default class WalkPage extends React.Component {
       <WalkStart {...this.state.walk}/>
 
       <WalkTeam {...this.state.walk}/>
-
     </div>);
   }
 };
