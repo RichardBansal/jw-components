@@ -60,8 +60,8 @@ export default class Walks extends React.Component {
 
     //TODO: (Post-PR) Place buttons in WalksFilterOptions (should be a generic FilterOptions)
     return (<div className="cityWalks">
-      <button onClick={() => this.setState({currentView: 'list'})}>List</button>
-      <button onClick={() => this.setState({currentView: 'map'})}>Map</button>
+      <button className="walksListButton" onClick={()=>this.setState({currentView: 'list'})}>List</button>
+      <button className="walksMapButton" onClick={()=>this.setState({currentView: 'map'})}>Map</button>
       { filterByDate ==='all' ? <button onClick={() => DashboardActions.filterByDate('future')}>Hide Past Walks</button> : <button onClick={()=>DashboardActions.filterByDate('all')}>Show All Walks</button>}
       <button onClick={() => window.open(DashboardStore.generateCSV())}>Export Spreadsheet</button>
       <WalksFilter

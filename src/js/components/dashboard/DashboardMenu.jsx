@@ -1,9 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const DashboardMenu = ({name, style, menuItems}) => {
 
-  const menu = menuItems.map((item,i) => (<li key={i}><Link to={item.link}>{item.display}</Link></li>));
+const DashboardMenu = ({style, menuItems}) => {
+
+  const menu = menuItems.map((item,i) => (<li key={i}><i class="icon-caret-right"></i><Link to={item.link}>{item.display}</Link></li>));
 
   return (
     <section className={`dashboardMenu ${style}`}>

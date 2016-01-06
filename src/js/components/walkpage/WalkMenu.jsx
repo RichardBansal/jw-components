@@ -5,6 +5,8 @@ import WalkPublicTransit from './WalkPublicTransit.jsx';
 import WalkParking from './WalkParking.jsx';
 
 //TODO: Duplicate of Itinerary <Walk/> and WalkPage <WalkHeader/>, refactor/combine components into factory
+//TODO: Make walkMenu sticky 
+//TODO: Add walkAccessibility, walkPublicTransit, and walkParking to walkMenu
 //TODO: Make walkMenu sticky - will complete after Dashboard
 
 const WalkMenu = ({walk,filters}) => {
@@ -12,12 +14,11 @@ const WalkMenu = ({walk,filters}) => {
   const {checkboxes, title, map, time, team} = walk;
   const {theme} = filters;
   const walkLeader = team.find(member => member.role === 'walk-leader');
-
+  
   //TODO Convert below to a Utility to use in multiple places like <Dashboard/> <CityWalksFilter/>
   const tags = Object.keys(checkboxes).filter(item => item.includes('theme'));
 
   const menuItems = ['About This Walk', 'Walk Route', 'How to find us', 'About the Walk Team'];
-
   debugger;
   return (
     <section className="walkMenu">
@@ -38,9 +39,6 @@ const WalkMenu = ({walk,filters}) => {
       <section className="tags">
         {tags.map((tag,i) => <span className="tag" key={i}>#{theme.data[tag.split('-').slice(1, 3).join('-')]}</span>)}
       </section>
-      <WalkAccessibility {...walk} {...filters} style="walk-menu-navigation"/>
-      <WalkPublicTransit {...walk} style="walk-menu-navigation"/>
-      <WalkParking {...walk} style="walk-menu-navigation"/>
     </section>
   );
 };
