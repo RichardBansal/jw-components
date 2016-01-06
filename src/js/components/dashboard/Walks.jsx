@@ -45,7 +45,7 @@ export default class Walks extends React.Component {
     const {currentView, walks} = this.state;
     const filters = DashboardStore.getFilters();
     const filterByDate = DashboardStore.getDateFilter()
-
+    //TODO*: Issue with walks for single user, correct and update PR
     const Walks = walks.map(({map, id, title, time, team, url}) =>
       <Walk
         title={title}
