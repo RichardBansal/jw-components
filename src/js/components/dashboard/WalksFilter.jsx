@@ -2,6 +2,10 @@ import React from 'react';
 import DashboardStore from './DashboardStore';
 import DashboardActions from './DashboardActions';
 
+//TODO*: Show previously added filters as grayed out
+//TODO*: Add class active for any place a button is clicked on (and remove when not clicked)
+//TODO*: Add filters above the specific filter (instead of all of them being on top)
+
 const Filter = ({name, selected, addFilter, data, key}) => (
   <li>
     <label>{name}</label>

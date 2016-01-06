@@ -8,7 +8,7 @@ const DashboardTemplate = ( props ) => {
   return (
     <section className="dashboard">
       <DashboardHeader {...DashboardStore.getCityData()} {...DashboardStore.getLatestPost()}/>
-      <DashboardMenu style="dashboard-page" {...DashboardStore.getCityData()} {...DashboardStore.getMenuItems()}/>
+      <DashboardMenu style="dashboard-page" {...props} {...DashboardStore.getCityData()} {...DashboardStore.getMenuItems()}/>
       {props.children}
     </section>
   );

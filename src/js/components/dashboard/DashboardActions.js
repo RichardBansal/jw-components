@@ -26,4 +26,8 @@ export default {
   sortLeaders(sortBy) {
     dispatch({type: Actions.SORT_LEADERS, sortBy});
   },
+
+  toggleMenuItems(item) {
+    dispatch({type: Actions.TOGGLE_MENU, item});
+  },
 }

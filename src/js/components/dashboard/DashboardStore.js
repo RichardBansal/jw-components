@@ -14,12 +14,19 @@ let filterByDate = 'all';
 let currentRoute = null;
 let sortBy = null;
 
-const menuItems = [ { display: `${city.name} Walks`, link: '/cityWalks'},
-  { display:'Walks', link: '/userWalks'},
-  { display:'Walk Leaders and Volunteers', link: '/walkLeaders'},
-  { display:'My Blog Posts', link: '/posts'},
-  //{ display:'Impact Report Builder', link: '/impact'}, //TODO: Complete with Data
-  { display:'Resources', link: 'resources'},
+import ImpactReport from './ImpactReport.jsx';
+import DashboardSummary from './DashboardSummary.jsx';
+import DashboardResources from './DashboardResources.jsx';
+import MyBlogPosts from './MyBlogPosts.jsx';
+import Walks from './Walks.jsx';
+import WalkLeaders from './WalkLeaders.jsx';
+
+const menuItems = [ { display: `${city.name} Walks`, link: '/cityWalks', active: false, componentName: 'Walks'},
+  { display:'My Walks', link: '/userWalks', active: false, componentName: 'Walks'},
+  { display:'Walk Leaders and Volunteers', link: '/walkLeaders', active: false, componentName: 'WalkLeaders'},
+  { display:'My Blog Posts', link: '/posts', active: false, componentName: 'MyBlogPosts'},
+  //{ display:'Impact Report Builder', link: '/impact', active: false, componentName: 'ImpactReport'}, //TODO: Complete with Data
+  { display:'Resources', link: 'resources', active: false, componentName: 'DashboardResources'},
 ];
 
 const CHANGE_EVENT = 'change';
@@ -81,9 +88,10 @@ const _generateRegionSummary = (walks) => {
 const _regionSummary = _generateRegionSummary(walks);
 
 const _retrieveWalks = () => {
+  debugger;
   if (currentRoute === '/cityWalks') return cityWalks;
-  if (currentRoute === '/myWalks') return walks;
-}
+  if (currentRoute === '/userWalks') return walks;
+};
 
 const _filterWalks = (filters = activeFilters, filterByDate = 'all') => {
   let allWalks = _retrieveWalks();
@@ -207,8 +215,9 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
     return _generateCSV();
   },
 
-  getWalks(route) {
-    const {pathname} = route;
+  getWalks(pathname) {
+    debugger;
+    //const {pathname} = route;
 
     if (pathname !== currentRoute) {
       currentRoute = pathname;
@@ -220,8 +229,8 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
     return filteredWalks;
   },
 
-  getWalkLeadersAndVolunteers(route) {
-    const {pathname} = route;
+  getWalkLeadersAndVolunteers(pathname) {
+    //const {pathname} = route;
 
     if (pathname !== currentRoute) {
       currentRoute = pathname;
@@ -250,7 +259,7 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
   },
 
   getMenuItems() {
-    return {menuItems};
+    return menuItems;
   },
 
   dispatcherIndex: register(function(action) {
@@ -279,6 +288,10 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
         _sortWalkLeaders(action.sortBy);
         sortBy = action.sortBy;
         break;
+      case Actions.TOGGLE_MENU:
+        //TODO: refactor into separate component
+        let menuItem = menuItems.find(i => i.display === action.item);
+        menuItem.active = !menuItem.active;
     }
 
     DashboardStore.emitChange();

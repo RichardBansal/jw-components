@@ -4,6 +4,8 @@ import React from 'react';
 const t2 = (a,b,c) => (a);
 
 //t2('Walk Leader: ', 'Walk Leaders: ', count($w->walkLeaders));
+
+//TODO*: Recap spaing and functionality issues
 const DashboardSummary = ({year, walkLeaders, walks, participants, originalYear, totalWalkLeaders, totalWalks, name }) => {
   return (
     <section className="dashboardRecap">

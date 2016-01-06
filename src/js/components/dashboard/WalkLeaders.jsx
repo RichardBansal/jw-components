@@ -27,7 +27,6 @@ export default class WalkLeaders extends React.Component {
   }
 
   _onChange() {
-    debugger;
     this.setState(getWalkLeaders(this.props));
   }
 
