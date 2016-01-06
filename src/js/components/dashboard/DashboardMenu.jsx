@@ -12,8 +12,6 @@ import WalkLeaders from './WalkLeaders.jsx';
 import DashboardActions from './DashboardActions';
 import DashboardStore from './DashboardStore';
 
-//<Link to={item.link}>{item.display}</Link>
-
 const getMenu = () => ({
   menuItems: DashboardStore.getMenuItems(),
 });
