@@ -10,6 +10,7 @@ const {walks: cityWalks, filters} = city;
 let filteredWalks = [];
 let activeLeaders = [];
 let activeFilters = [];
+let inActiveFilters = [];
 let filterByDate = 'all';
 let currentRoute = null;
 let sortBy = null;
@@ -160,13 +161,23 @@ const _sortWalkLeaders = (sortSelected) => {
   }
 };
 
-const _addWalkFilter = (filter) => {
-  if (activeFilters.findIndex(f => f === filter) === -1) activeFilters.push(filter);
+const _toggleWalkFilter = (filter) => {
+  const activeFilterIndex = activeFilters.findIndex(f => f === filter);
+  const inActiveFilterIndex = inActiveFilters.findIndex(f => f === filter);
+
+  if (activeFilterIndex === -1) {
+    activeFilters.push(filter);
+    if (inActiveFilterIndex !== -1) inActiveFilters.splice(inActiveFilterIndex, 1);
+  } else if (inActiveFilterIndex === -1) {
+    activeFilters.splice(activeFilterIndex, 1);
+    inActiveFilters.push(filter);
+  } else {
+    //do nothing
+  }
 };
 
 const _removeWalkFilter = (filter) => {
-
-  activeFilters.splice(activeFilters.findIndex(f => f === filter), 1);
+  inActiveFilters.splice(inActiveFilters.findIndex(f => f === filter), 1);
 };
 
 const _generateCSV = () => {
@@ -200,7 +211,7 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
   },
 
   getActiveFilters() {
-    return activeFilters;
+    return {activeFilters, inActiveFilters};
   },
 
   getDateFilter() {
@@ -267,8 +278,8 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
       case Actions.FILTER_WALKS:
         _filterWalks(action.filters);
         break;
-      case Actions.ADD_WALK_FILTER:
-        _addWalkFilter(action.filter);
+      case Actions.TOGGLE_WALK_FILTER:
+        _toggleWalkFilter(action.filter);
         _filterWalks();
         break;
       case Actions.REMOVE_WALK_FILTER:

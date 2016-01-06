@@ -12,7 +12,7 @@ import DashboardSummary from './DashboardSummary.jsx';
 
 import './view.less';
 
-//TODO: Issue with filters, + separating theme filters, region filters, and accessibility filters
+//TODO*: Issue with filters, + separating theme filters, region filters, and accessibility filters
 
 const Dashboard = () => (
   <section className="dashboard">

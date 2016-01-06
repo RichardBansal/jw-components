@@ -65,7 +65,7 @@ export default class DashboardMenu extends React.Component {
     return (
       <section className="dashboardMenu">
         <ul>{menu}</ul>
-        { displayResources ? <DashboardResources {...DashboardStore.getResources()}/> : null }
+        { displayResources ? <DashboardResources/> : null }
       </section>
     );
   }

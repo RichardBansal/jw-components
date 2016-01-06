@@ -11,8 +11,8 @@ export default {
     dispatch({type: Actions.REMOVE_WALK_FILTER, filter});
   },
 
-  addFilter(filter) {
-    dispatch({type: Actions.ADD_WALK_FILTER, filter});
+  toggleFilter(filter) {
+    dispatch({type: Actions.TOGGLE_WALK_FILTER, filter});
   },
 
   filterByDate(filter) {
