@@ -1,12 +1,11 @@
 import React from 'react';
 import DashboardStore from './DashboardStore';
 
-
-//TODO* Fix {routes} was working before
 //TODO* Country Flag (data is not stubbed, just 'Canada') and 'Toronto' as well
 
 const DashboardResources = () => {
   const {cityOrganizers, videoTips, files, featuredWalks} = DashboardStore.getResources();
+
   return (
     <section className="dashboardResources">
       <section className="walkOrganizers">
@@ -25,7 +24,7 @@ const DashboardResources = () => {
             (
               <li key={i} className="funWalksFromAroundWorld">
                 <a href={w.url} className="walkImage"><img src={`http://janeswalk.org/${w.thumbnailUrl}`}/></a>
-                <span className="flag"><img src="http://janeswalk.org/themes/janeswalk/images/countryFlags/Canada.png"/></span>
+                <span className="flag"><img src={`http://janeswalk.org/themes/janeswalk/images/countryFlags/Canada.png`}/></span>
                 <div>
                   <a href={w.url}>{`${w.title}`}</a>
                   <h4>Toronto, ON</h4>

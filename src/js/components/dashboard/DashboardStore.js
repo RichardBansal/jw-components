@@ -7,19 +7,14 @@ import {dashboard} from './DashboardStaticData';
 
 const {city, walks, resources, blog, impact} = dashboard;
 const {walks: cityWalks, filters} = city;
+
 let filteredWalks = [];
 let activeLeaders = [];
+
 let activeFilters = {};
 let filterByDate = 'all';
 let currentRoute = null;
 let sortBy = null;
-
-import ImpactReport from './ImpactReport.jsx';
-import DashboardSummary from './DashboardSummary.jsx';
-import DashboardResources from './DashboardResources.jsx';
-import MyBlogPosts from './MyBlogPosts.jsx';
-import Walks from './Walks.jsx';
-import WalkLeaders from './WalkLeaders.jsx';
 
 const menuItems = [ { display: `${city.name} Walks`, link: '/cityWalks', active: false, componentName: 'Walks'},
   { display:'My Walks', link: '/userWalks', active: false, componentName: 'Walks'},
@@ -95,7 +90,7 @@ const _retrieveWalks = () => {
 const _filterWalks = (filters = activeFilters, filterByDate = 'all') => {
   let allWalks = _retrieveWalks();
 
-  //grab all filters whose state is true
+  //grab all filters whose state:true
   const filtersArray = Object.keys(filters).reduce((array, key) => array.concat(filters[key].filter(f => f.state)), []);
 
   if (!filtersArray.length) filteredWalks = allWalks;
@@ -163,8 +158,6 @@ const _sortWalkLeaders = (sortSelected) => {
 
 const _toggleWalkFilter = (filter, filterName) => {
 
-  //let display
-  //let filterSet = Object.keys(activeFilters).find(key => activeFilters[key][filterName] === filterName);
   const activeFilterIndex = activeFilters[filterName].findIndex(f => f.filter === filter);
 
   if (activeFilterIndex === -1) {
@@ -179,7 +172,7 @@ const _toggleWalkFilter = (filter, filterName) => {
 const _removeWalkFilter = (filter, filterName) => {
   const activeFilterIndex = activeFilters[filterName].findIndex(f => f.filter === filter);
 
-  if(activeFilterIndex !== -1) activeFilters[filterName].splice(activeFilterIndex, 1);
+  if (activeFilterIndex !== -1) activeFilters[filterName].splice(activeFilterIndex, 1);
 };
 
 const _generateCSV = () => {
@@ -243,8 +236,6 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
   },
 
   getWalkLeadersAndVolunteers(pathname) {
-    //const {pathname} = route;
-
     if (pathname !== currentRoute) {
       currentRoute = pathname;
       filterByDate = 'all';

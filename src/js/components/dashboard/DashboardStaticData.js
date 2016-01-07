@@ -525,6 +525,7 @@ const dashboard = {
     filters,
     users: cityUsers,  //city users
     name: "Toronto",
+    country: "Canada",
     url:"http://janeswalk.org/canada/toronto/",
     blogUrl: "http://janeswalk.org/canada/toronto/toronto-blog/",
     cityOrganizer: {

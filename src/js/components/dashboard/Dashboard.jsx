@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, Link} from 'react-router';
-//import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import DashboardStore from './DashboardStore';
 
-//TODO: Data for ImpactReport
 import DashboardHeader from './DashboardHeader.jsx';
 import DashboardMenu from './DashboardMenu.jsx';
 import DashboardSummary from './DashboardSummary.jsx';

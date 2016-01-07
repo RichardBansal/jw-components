@@ -34,21 +34,15 @@ export default class Walks extends React.Component {
     DashboardStore.removeChangeListener( this._onChange );
   }
 
-  //This is required to capture updated routing (indicating which type of walks to retrieve)
-  //componentWillReceiveProps(props) {
-  //  this.setState(getWalks(props));
-  //}
-
   _onChange() {
     this.setState(getWalks(this.props));
   }
 
   render() {
-
-    debugger; //check filters here
     const {currentView, walks} = this.state;
     const filters = DashboardStore.getFilters();
-    const filterByDate = DashboardStore.getDateFilter()
+    const filterByDate = DashboardStore.getDateFilter();
+
     const Walks = walks.map(({map, id, title, time, team, url}) =>
       <Walk
         title={title}

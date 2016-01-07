@@ -4,7 +4,7 @@ import { dateFormatted } from './../itinerary/ItineraryUtils';
 
 //TODO: Common component from <Itinerary/> <Walk/>, List component should be generic with configuration specified (maybe a mixing or factory) (Post-PR)
 //TODO: Show volunteers - so static data generated is not correct (confirm with json data provided before proceeding with any changes
-//TODO*: Bring back in WalkLeader mailto:
+//TODO*: mailto: for email
 
 const Walk = ({firstName, lastName, walks, email}) => {
 

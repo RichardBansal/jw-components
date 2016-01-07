@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Link} from 'react-router';
 
+import DashboardActions from './DashboardActions';
+import DashboardStore from './DashboardStore';
+
+//TODO: ImpactReport is not set-up
 import ImpactReport from './ImpactReport.jsx';
+
 import DashboardSummary from './DashboardSummary.jsx';
 import DashboardResources from './DashboardResources.jsx';
 import MyBlogPosts from './MyBlogPosts.jsx';
 import Walks from './Walks.jsx';
 import WalkLeaders from './WalkLeaders.jsx';
-
-import DashboardActions from './DashboardActions';
-import DashboardStore from './DashboardStore';
 
 const getMenu = () => ({
   menuItems: DashboardStore.getMenuItems(),
@@ -19,14 +20,9 @@ const getMenu = () => ({
 //TODO*: Refactoring Components, and Sticky Active Menu Item
 //TODO*: Show number of each menu item
 
-const getComponent = ({componentName}) => {
-  let component = null;
-  if (componentName === 'Walks') component =  Walks;
-  if (componentName === 'WalkLeaders') component =  WalkLeaders;
-  if (componentName === 'MyBlogPosts') component =  MyBlogPosts;
-  if (componentName === 'DashboardResources') component =  DashboardResources;
-  return component;
-};
+const Components = {DashboardResources, MyBlogPosts, Walks, WalkLeaders};
+
+const getComponent = ({componentName}) => (Components[componentName]);
 
 export default class DashboardMenu extends React.Component {
   constructor(props, ...args){
@@ -63,6 +59,7 @@ export default class DashboardMenu extends React.Component {
       }
     );
 
+    //Dashboard Resources is displayed by default if not other menu item is selected
     const displayResources = menuItems.every(a => a.active === false);
 
     return (
