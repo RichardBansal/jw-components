@@ -34,6 +34,53 @@
 
 //TODO: Remove duplication and make use of nested styling
 
+button {
+  border: none;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-right: 7px;
+  background: #fff;
+  cursor: pointer;
+  &:focus {
+    outline:0;
+  }
+  &.active, &.activeFilter {
+    background: @color-orange;
+    border-color: @color-orange;
+    color: #fff;
+    .buttonClose {
+      background: rgba(255,255,255,0.3);
+      border-left: 1px solid rgba(255,255,255,0.8);
+      &:hover {
+        background:rgba(255,255,255,0.5);
+      }
+    }
+  }
+  &.inActiveFilter {
+    .buttonClose {
+      background: rgba(200,200,200,0.4);
+      border-left: 1px solid rgba(50,50,50,0.3);
+      &:hover {
+        background:rgba(200,200,200,0.6);
+      }
+    }
+  }
+  .buttonClose {
+    padding: 4px 12px 3px;
+    margin-left: -3px;
+    position: relative;
+    left: 9px;
+    font-size: 1.7rem;
+    line-height: 0;
+    top: 2px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
+
+
+
 .dashboard {
   li {
     list-style: none;
@@ -94,11 +141,14 @@
     ul {
       list-style: none;
       padding: 0;
-      li {
+      section > li {
         font-size: 28px;
         border-bottom: 1px solid #ddd;
         background: @color-blue;
         border-bottom: 1px solid #fff;
+        padding: 30px 70px;
+        color: #fff;
+        cursor: pointer;
         a {
           display: block;
           padding: 30px 70px;
@@ -129,12 +179,6 @@
   }
   .walks {
     button {
-      border: none;
-      padding: 4px 8px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      margin-right: 7px;
       &.walksListButton {
         margin-right: -1px;
         border-top-right-radius: 0;

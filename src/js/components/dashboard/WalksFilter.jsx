@@ -13,7 +13,7 @@ const Filter = ({name, selected, toggleFilter, removeFilter, data, key, activeFi
     ActiveFilters = activeFilters[name].map((f, i) =>
       <button key={i} className="activeFilter">
         <span onClick={e => toggleFilter(f, name, e.target.value)}> {f} </span>
-        <span onClick={e => removeFilter(f, name, e.target.value)}> x </span>
+        <span className="buttonClose" onClick={e => removeFilter(f, name, e.target.value)}> × </span>
       </button>
     );
   }
@@ -22,24 +22,24 @@ const Filter = ({name, selected, toggleFilter, removeFilter, data, key, activeFi
     InActiveFilters = inActiveFilters[name].map((f, i) =>
       <button key={i} className="inActiveFilter">
         <span onClick={e => toggleFilter(f, name, e.target.value)}> {f} </span>
-        <span onClick={e => removeFilter(f, name, e.target.value)}> x </span>
+        <span className="buttonClose" onClick={e => removeFilter(f, name, e.target.value)}> × </span>
       </button>
     );
   }
 
   return (
-    <li>
+    <li>    
+      <label>{name}</label>
+      <select value="Select One" onChange={e => toggleFilter(e.target.value, name)}>
+        <option value="">Select One</option>
+        {Object.keys(data).map((k,i) => <option key={i} value={k}>{data[k]}</option>)}
+      </select>
       <section>
       {ActiveFilters}
       </section>
       <section>
       {InActiveFilters}
       </section>
-      <label>{name}</label>
-      <select value="Select One" onChange={e => toggleFilter(e.target.value, name)}>
-        <option value="">Select One</option>
-        {Object.keys(data).map((k,i) => <option key={i} value={k}>{data[k]}</option>)}
-      </select>
     </li>
   );
 };
