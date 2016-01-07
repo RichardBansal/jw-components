@@ -146,7 +146,7 @@ const _filterWalkLeaders = (filterByDate = '') => {
       return true; //filterByDate === 'all'
     });
   }
-}
+};
 
 const _sortWalkLeaders = (sortSelected) => {
   //TODO: Toggle off and on or reset
@@ -169,30 +169,20 @@ const _toggleWalkFilter = (filter, filterName) => {
     activeFilters[filterName] = [];
   }
 
-  if (!Object.keys(inActiveFilters).includes(filterName)) {
-    inActiveFilters[filterName] = [];
-  }
-
-  const activeFilterIndex = activeFilters[filterName].findIndex(f => f === filter);
-  const inActiveFilterIndex = inActiveFilters[filterName].findIndex(f => f === filter);
+  const activeFilterIndex = activeFilters[filterName].findIndex(f => f.filter === filter);
 
   if (activeFilterIndex === -1) {
-    activeFilters[filterName].push(filter);
-    if (inActiveFilterIndex !== -1) inActiveFilters[filterName].splice(inActiveFilterIndex, 1);
-  } else if (inActiveFilterIndex === -1) {
-    activeFilters[filterName].splice(activeFilterIndex, 1);
-    inActiveFilters[filterName].push(filter);
+    activeFilters[filterName].push({filter, state:true});
   } else {
-    //do nothing
+    let filter = activeFilters[filterName][activeFilterIndex];
+    filter.state = !filter.state;
   }
 };
 
 const _removeWalkFilter = (filter, filterName) => {
-  const activeFilterIndex = activeFilters[filterName].findIndex(f => f === filter);
-  const inActiveFilterIndex = inActiveFilters[filterName].findIndex(f => f === filter);
+  const activeFilterIndex = activeFilters[filterName].findIndex(f => f.filter === filter);
 
   if(activeFilterIndex !== -1) activeFilters[filterName].splice(activeFilterIndex, 1);
-  if(inActiveFilterIndex !== -1) inActiveFilters[filterName].splice(inActiveFilterIndex, 1);
 };
 
 const _generateCSV = () => {

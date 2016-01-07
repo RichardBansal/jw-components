@@ -3,26 +3,18 @@ import DashboardStore from './DashboardStore';
 import DashboardActions from './DashboardActions';
 
 //TODO*: Refactoring Components, WalksFilter is not doing much
+//TODO*: Avoid list from changing (you have two lists showing up) so fix this (so it looks less like a puzzle)
+//TODO*: Filter by Theme 'name' should match displaying name (this is confusing)
 
-const Filter = ({name, selected, toggleFilter, removeFilter, data, key, activeFilters, inActiveFilters}) => {
+const Filter = ({name, selected, toggleFilter, removeFilter, data, key, activeFilters}) => {
 
   let ActiveFilters;
-  let InActiveFilters;
 
   if (Object.keys(activeFilters).includes(name)) {
-    ActiveFilters = activeFilters[name].map((f, i) =>
-      <button key={i} className="activeFilter">
-        <span onClick={e => toggleFilter(f, name, e.target.value)}> {f} </span>
-        <span onClick={e => removeFilter(f, name, e.target.value)}> x </span>
-      </button>
-    );
-  }
-
-  if (Object.keys(inActiveFilters).includes(name)) {
-    InActiveFilters = inActiveFilters[name].map((f, i) =>
-      <button key={i} className="inActiveFilter">
-        <span onClick={e => toggleFilter(f, name, e.target.value)}> {f} </span>
-        <span onClick={e => removeFilter(f, name, e.target.value)}> x </span>
+    ActiveFilters = activeFilters[name].map(({filter, state}, i) =>
+      <button key={i} className={state ? "activeFilter" : "inActiveFilter"}>
+        <span onClick={e => toggleFilter(filter, name, e.target.value)}> {filter} </span>
+        <span onClick={e => removeFilter(filter, name, e.target.value)}> x </span>
       </button>
     );
   }
@@ -31,9 +23,6 @@ const Filter = ({name, selected, toggleFilter, removeFilter, data, key, activeFi
     <li>
       <section>
       {ActiveFilters}
-      </section>
-      <section>
-      {InActiveFilters}
       </section>
       <label>{name}</label>
       <select value="Select One" onChange={e => toggleFilter(e.target.value, name)}>
@@ -44,12 +33,12 @@ const Filter = ({name, selected, toggleFilter, removeFilter, data, key, activeFi
   );
 };
 
-const WalksFilter = ({filters, activeFilters, inActiveFilters, removeFilter, toggleFilter}) => {
+const WalksFilter = ({filters, activeFilters, removeFilter, toggleFilter}) => {
 
   debugger;
 
   const Filters = Object.keys(filters).map(
-    key => <Filter key={key} {...filters[key]} toggleFilter={toggleFilter} removeFilter={removeFilter} activeFilters={activeFilters} inActiveFilters={inActiveFilters}/>
+    key => <Filter key={key} {...filters[key]} toggleFilter={toggleFilter} removeFilter={removeFilter} activeFilters={activeFilters}/>
   );
 
   return (
