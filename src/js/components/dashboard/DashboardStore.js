@@ -10,7 +10,6 @@ const {walks: cityWalks, filters} = city;
 let filteredWalks = [];
 let activeLeaders = [];
 let activeFilters = {};
-let inActiveFilters = {};
 let filterByDate = 'all';
 let currentRoute = null;
 let sortBy = null;
@@ -89,7 +88,6 @@ const _generateRegionSummary = (walks) => {
 const _regionSummary = _generateRegionSummary(walks);
 
 const _retrieveWalks = () => {
-  debugger;
   if (currentRoute === '/cityWalks') return cityWalks;
   if (currentRoute === '/userWalks') return walks;
 };
@@ -97,22 +95,22 @@ const _retrieveWalks = () => {
 const _filterWalks = (filters = activeFilters, filterByDate = 'all') => {
   let allWalks = _retrieveWalks();
 
-  const filtersArray = Object.keys(filters).reduce((array, key) => array.concat(filters[key]), []);
+  //grab all filters whose state is true
+  const filtersArray = Object.keys(filters).reduce((array, key) => array.concat(filters[key].filter(f => f.state)), []);
 
   if (!filtersArray.length) filteredWalks = allWalks;
   else {
     filteredWalks = allWalks.filter(walk => {
-      return filtersArray.reduce((p, c)=> {
+      return filtersArray.reduce((bool, {filter})=> {
         //TODO: Assumed wards is a single string
-        const ward = walk.wards ? walk.wards.indexOf(c) !== -1 : false;
-        const theme = walk.checkboxes ? Object.keys(walk.checkboxes).indexOf('theme-' + c) !== -1 : false;
-        const accessibility = walk.checkboxes ? Object.keys(walk.checkboxes).indexOf('accessible-' + c) !== -1 : false;
+        const ward = walk.wards ? walk.wards.indexOf(filter) !== -1 : false;
+        const theme = walk.checkboxes ? Object.keys(walk.checkboxes).indexOf('theme-' + filter) !== -1 : false;
+        const accessibility = walk.checkboxes ? Object.keys(walk.checkboxes).indexOf('accessible-' + filter) !== -1 : false;
 
-        return (p && (ward || theme || accessibility));
+        return (bool && (ward || theme || accessibility));
       }, true);
     });
   }
-
   if (!filterByDate.length || filterByDate === 'all') return;
   else {
     filteredWalks = filteredWalks.filter(walk => {
@@ -165,14 +163,13 @@ const _sortWalkLeaders = (sortSelected) => {
 
 const _toggleWalkFilter = (filter, filterName) => {
 
-  if (!Object.keys(activeFilters).includes(filterName)) {
-    activeFilters[filterName] = [];
-  }
-
+  //let display
+  //let filterSet = Object.keys(activeFilters).find(key => activeFilters[key][filterName] === filterName);
   const activeFilterIndex = activeFilters[filterName].findIndex(f => f.filter === filter);
 
   if (activeFilterIndex === -1) {
-    activeFilters[filterName].push({filter, state:true});
+    let display = filters[filterName].data[filter];
+    activeFilters[filterName].push({filter, display, state: true});
   } else {
     let filter = activeFilters[filterName][activeFilterIndex];
     filter.state = !filter.state;
@@ -216,7 +213,7 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
   },
 
   getActiveFilters() {
-    return {activeFilters, inActiveFilters};
+    return {activeFilters};
   },
 
   getDateFilter() {
@@ -232,14 +229,13 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
   },
 
   getWalks(pathname) {
-    debugger;
-    //const {pathname} = route;
 
     if (pathname !== currentRoute) {
       currentRoute = pathname;
       filteredWalks = _retrieveWalks();
-      activeFilters = {};
-      inActiveFilters = {};
+      Object.keys(filters).map(f => {
+        activeFilters[f] = [];
+      });
       filterByDate = 'all';
     }
 
@@ -297,7 +293,6 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
         filterByDate = action.filter;
         break;
       case Actions.FILTER_LEADERS_BY_DATE:
-        debugger;
         _filterWalkLeaders(action.filter);
         filterByDate = action.filter;
         break;
