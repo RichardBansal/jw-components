@@ -13,13 +13,14 @@ import Walk from './Walk.jsx';
 const getWalks = (props) => ({
   walks: props.walks || DashboardStore.getWalks(props.location),
   activeFilters: props.activeFilters || DashboardStore.getActiveFilters().activeFilters,
-  inActiveFilters: props.activeFilters || DashboardStore.getActiveFilters().inActiveFilters,
+  inActiveFilters: props.inActiveFilters || DashboardStore.getActiveFilters().inActiveFilters,
   filterByDate: props.filterByDate || DashboardStore.getDateFilter(),
 });
 
 export default class Walks extends React.Component {
   constructor(props, ...args) {
     super(props, ...args);
+    debugger;
     this.state = getWalks(props);
     this.state.currentView = 'list';
     this._onChange = this._onChange.bind(this);
@@ -84,6 +85,7 @@ export default class Walks extends React.Component {
 
 Walks.PropTypes = {
   walks: React.PropTypes.array.isRequired,
-  activeFilters: React.PropTypes.array.isRequired,
+  activeFilters: React.PropTypes.object.isRequired,
   filterByDate: React.PropTypes.string.isRequired,
+  inActiveFilters: React.PropTypes.object.isRequired,
 };

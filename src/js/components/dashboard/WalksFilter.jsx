@@ -2,36 +2,53 @@ import React from 'react';
 import DashboardStore from './DashboardStore';
 import DashboardActions from './DashboardActions';
 
-//TODO*: Add filters above the specific filter (instead of all of them being on top)
+//TODO*: Refactoring Components, WalksFilter is not doing much
 
-const Filter = ({name, selected, toggleFilter, data, key}) => (
-  <li>
-    <label>{name}</label>
-    <select value="Select One" onChange={e => toggleFilter(e.target.value)}>
-      <option value="">Select One</option>
-      {Object.keys(data).map((k,i) => <option key={i} value={k}>{data[k]}</option>)}
-    </select>
-  </li>
-);
+const Filter = ({name, selected, toggleFilter, removeFilter, data, key, activeFilters, inActiveFilters}) => {
+
+  let ActiveFilters;
+  let InActiveFilters;
+
+  if (Object.keys(activeFilters).includes(name)) {
+    ActiveFilters = activeFilters[name].map((f, i) => <button key={i} className="activeFilter" onClick={e => toggleFilter(f, name, e.target.value)}>{f}</button>);
+  }
+
+  if (Object.keys(inActiveFilters).includes(name)) {
+    InActiveFilters = inActiveFilters[name].map((f, i) =>
+      <button key={i} className="inActiveFilter">
+        <span onClick={e => toggleFilter(f, name, e.target.value)}> {f} </span>
+        <span onClick={e => removeFilter(f, name, e.target.value)}> x </span>
+      </button>
+    );
+  }
+
+  return (
+    <li>
+      <section>
+      {ActiveFilters}
+      </section>
+      <section>
+      {InActiveFilters}
+      </section>
+      <label>{name}</label>
+      <select value="Select One" onChange={e => toggleFilter(e.target.value, name)}>
+        <option value="">Select One</option>
+        {Object.keys(data).map((k,i) => <option key={i} value={k}>{data[k]}</option>)}
+      </select>
+    </li>
+  );
+};
 
 const WalksFilter = ({filters, activeFilters, inActiveFilters, removeFilter, toggleFilter}) => {
 
-  const Filters = Object.keys(filters).map(
-    key => <Filter key={key} {...filters[key]} toggleFilter={toggleFilter}/>
-  );
+  debugger;
 
-  const ActiveFilters = activeFilters.map((f, i) => <button key={i} className="activeFilter" onClick={e => toggleFilter(f, e.target.value)}>{f}</button>);
-  const InActiveFilters = inActiveFilters.map((f, i) =>
-    <button key={i} className="inActiveFilter">
-      <span onClick={e => toggleFilter(f, e.target.value)}> {f} </span>
-      <span onClick={e => removeFilter(f, e.target.value)}> x </span>
-    </button>
+  const Filters = Object.keys(filters).map(
+    key => <Filter key={key} {...filters[key]} toggleFilter={toggleFilter} removeFilter={removeFilter} activeFilters={activeFilters} inActiveFilters={inActiveFilters}/>
   );
 
   return (
     <div className="walksFilter">
-      {ActiveFilters}
-      {InActiveFilters}
       {Filters}
     </div>
   );

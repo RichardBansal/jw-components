@@ -9,8 +9,8 @@ const {city, walks, resources, blog, impact} = dashboard;
 const {walks: cityWalks, filters} = city;
 let filteredWalks = [];
 let activeLeaders = [];
-let activeFilters = [];
-let inActiveFilters = [];
+let activeFilters = {};
+let inActiveFilters = {};
 let filterByDate = 'all';
 let currentRoute = null;
 let sortBy = null;
@@ -97,10 +97,12 @@ const _retrieveWalks = () => {
 const _filterWalks = (filters = activeFilters, filterByDate = 'all') => {
   let allWalks = _retrieveWalks();
 
-  if (!filters.length) filteredWalks = allWalks;
+  const filtersArray = Object.keys(filters).reduce((array, key) => array.concat(filters[key]), []);
+
+  if (!filtersArray.length) filteredWalks = allWalks;
   else {
     filteredWalks = allWalks.filter(walk => {
-      return filters.reduce((p, c)=> {
+      return filtersArray.reduce((p, c)=> {
         //TODO: Assumed wards is a single string
         const ward = walk.wards ? walk.wards.indexOf(c) !== -1 : false;
         const theme = walk.checkboxes ? Object.keys(walk.checkboxes).indexOf('theme-' + c) !== -1 : false;
@@ -161,23 +163,32 @@ const _sortWalkLeaders = (sortSelected) => {
   }
 };
 
-const _toggleWalkFilter = (filter) => {
-  const activeFilterIndex = activeFilters.findIndex(f => f === filter);
-  const inActiveFilterIndex = inActiveFilters.findIndex(f => f === filter);
+const _toggleWalkFilter = (filter, filterName) => {
+
+  if (!Object.keys(activeFilters).includes(filterName)) {
+    activeFilters[filterName] = [];
+  }
+
+  if (!Object.keys(inActiveFilters).includes(filterName)) {
+    inActiveFilters[filterName] = [];
+  }
+
+  const activeFilterIndex = activeFilters[filterName].findIndex(f => f === filter);
+  const inActiveFilterIndex = inActiveFilters[filterName].findIndex(f => f === filter);
 
   if (activeFilterIndex === -1) {
-    activeFilters.push(filter);
-    if (inActiveFilterIndex !== -1) inActiveFilters.splice(inActiveFilterIndex, 1);
+    activeFilters[filterName].push(filter);
+    if (inActiveFilterIndex !== -1) inActiveFilters[filterName].splice(inActiveFilterIndex, 1);
   } else if (inActiveFilterIndex === -1) {
-    activeFilters.splice(activeFilterIndex, 1);
-    inActiveFilters.push(filter);
+    activeFilters[filterName].splice(activeFilterIndex, 1);
+    inActiveFilters[filterName].push(filter);
   } else {
     //do nothing
   }
 };
 
-const _removeWalkFilter = (filter) => {
-  inActiveFilters.splice(inActiveFilters.findIndex(f => f === filter), 1);
+const _removeWalkFilter = (filter, filterName) => {
+  inActiveFilters[filterName].splice(inActiveFilters[filterName].findIndex(f => f === filter), 1);
 };
 
 const _generateCSV = () => {
@@ -233,7 +244,8 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
     if (pathname !== currentRoute) {
       currentRoute = pathname;
       filteredWalks = _retrieveWalks();
-      activeFilters = [];
+      activeFilters = {};
+      inActiveFilters = {};
       filterByDate = 'all';
     }
 
@@ -279,11 +291,11 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
         _filterWalks(action.filters);
         break;
       case Actions.TOGGLE_WALK_FILTER:
-        _toggleWalkFilter(action.filter);
+        _toggleWalkFilter(action.filter, action.filterName);
         _filterWalks();
         break;
       case Actions.REMOVE_WALK_FILTER:
-        _removeWalkFilter(action.filter);
+        _removeWalkFilter(action.filter, action.filterName);
         _filterWalks();
         break;
       case Actions.FILTER_WALKS_BY_DATE:

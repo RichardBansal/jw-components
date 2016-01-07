@@ -7,12 +7,12 @@ export default {
     dispatch({type: Actions.FILTER_WALKS, filters});
   },
 
-  removeFilter(filter) {
-    dispatch({type: Actions.REMOVE_WALK_FILTER, filter});
+  removeFilter(filter, filterName) {
+    dispatch({type: Actions.REMOVE_WALK_FILTER, filter, filterName});
   },
 
-  toggleFilter(filter) {
-    dispatch({type: Actions.TOGGLE_WALK_FILTER, filter});
+  toggleFilter(filter, filterName) {
+    dispatch({type: Actions.TOGGLE_WALK_FILTER, filter, filterName});
   },
 
   filterByDate(filter) {
