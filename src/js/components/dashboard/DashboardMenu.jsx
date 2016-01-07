@@ -16,6 +16,9 @@ const getMenu = () => ({
   menuItems: DashboardStore.getMenuItems(),
 });
 
+//TODO*: Refactoring Components, and Sticky Active Menu Item
+//TODO*: Show number of each menu item
+
 const getComponent = ({componentName}) => {
   let component = null;
   if (componentName === 'Walks') component =  Walks;

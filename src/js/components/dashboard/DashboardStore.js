@@ -188,7 +188,11 @@ const _toggleWalkFilter = (filter, filterName) => {
 };
 
 const _removeWalkFilter = (filter, filterName) => {
-  inActiveFilters[filterName].splice(inActiveFilters[filterName].findIndex(f => f === filter), 1);
+  const activeFilterIndex = activeFilters[filterName].findIndex(f => f === filter);
+  const inActiveFilterIndex = inActiveFilters[filterName].findIndex(f => f === filter);
+
+  if(activeFilterIndex !== -1) activeFilters[filterName].splice(activeFilterIndex, 1);
+  if(inActiveFilterIndex !== -1) inActiveFilters[filterName].splice(inActiveFilterIndex, 1);
 };
 
 const _generateCSV = () => {

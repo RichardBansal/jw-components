@@ -10,7 +10,12 @@ const Filter = ({name, selected, toggleFilter, removeFilter, data, key, activeFi
   let InActiveFilters;
 
   if (Object.keys(activeFilters).includes(name)) {
-    ActiveFilters = activeFilters[name].map((f, i) => <button key={i} className="activeFilter" onClick={e => toggleFilter(f, name, e.target.value)}>{f}</button>);
+    ActiveFilters = activeFilters[name].map((f, i) =>
+      <button key={i} className="activeFilter">
+        <span onClick={e => toggleFilter(f, name, e.target.value)}> {f} </span>
+        <span onClick={e => removeFilter(f, name, e.target.value)}> x </span>
+      </button>
+    );
   }
 
   if (Object.keys(inActiveFilters).includes(name)) {
