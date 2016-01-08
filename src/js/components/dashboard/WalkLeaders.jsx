@@ -37,7 +37,7 @@ export default class WalkLeaders extends React.Component {
     const {filterLeadersByDate, sortLeaders} = DashboardActions;
 
     const WalkLeaders = activeLeaders.map((wL,i) => (<WalkLeader {...wL} key={i}/> ));
-    //TODO* Create generic button component
+    //TODO** Create generic button component
     return (<section className="dashboardWalkLeaders">
       <button className={`buttonAllWalks ${filterByDate === 'all' ? 'active' : null}`} onClick={() => filterLeadersByDate('all')}>All Walks</button>
       <button className={`buttonUpcomingWalks ${filterByDate === 'future' ? 'active' : null}`} onClick={() => filterLeadersByDate('future')}>Upcoming Walks Only</button>

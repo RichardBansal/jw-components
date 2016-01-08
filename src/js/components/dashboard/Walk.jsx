@@ -8,18 +8,15 @@ import { dateFormatted } from './../itinerary/ItineraryUtils';
 const Walk = ({title, start, meeting, id, team, url}) => {
   //TODO: no consistent definition of "walk-leader", how to grab the 'Led by' data, grabbing first team member.
   //TODO: Promote | Edit | Unpublish
-  //TODO*: mailto: for email
-
-  //TODO: Are we able to add a `pastWalk` class to a `walk` that is in the past? I’m thinking it will be helpful if we style upcoming walks differently from past walks in the list, and style the `promote` button not to appear
 
   return (
     <li key={id}>
-      <div className="walk">
+      <div className={start*1000 > Date.now() ? 'walk' : 'walk pastWalk'}>
         <h3>{title}</h3>
         <h4>{dateFormatted(start)}</h4>
-        {team.length ? <h4>Led by {`${team[0]['name-first']} ${team[0]['name-last']} ${team[0]['email']}`} </h4> : null}
+        {team.length ? <h4>Led by {`${team[0]['name-first']} ${team[0]['name-last']}`} <a href={`mailto:${team[0]['email']}`}>{team[0]['email']}</a> </h4> : null}
         <h4>Meeting at {meeting}</h4>
-        <button><a href="">Promote</a></button>
+        { start*1000 > Date.now() ? <button><a href="">Promote</a></button> : null}
         <button><a href={`http://janeswalk.org/walk/form/?load=${url.split('.org')[1]}`}>Edit</a></button>
         <button><a href="">Unpublish</a></button>
       </div>

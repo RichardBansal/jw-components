@@ -20,7 +20,8 @@ const menuItems = [ { display: `${city.name} Walks`, link: '/cityWalks', active:
   { display:'My Walks', link: '/userWalks', active: false, componentName: 'Walks'},
   { display:'Walk Leaders and Volunteers', link: '/walkLeaders', active: false, componentName: 'WalkLeaders'},
   { display:'My Blog Posts', link: '/posts', active: false, componentName: 'MyBlogPosts'},
-  //{ display:'Impact Report Builder', link: '/impact', active: false, componentName: 'ImpactReport'}, //TODO: Complete with Data
+  //TODO: Complete with Data
+  //{ display:'Impact Report Builder', link: '/impact', active: false, componentName: 'ImpactReport'},
   { display:'Resources', link: 'resources', active: false, componentName: 'DashboardResources'},
 ];
 
@@ -143,18 +144,23 @@ const _filterWalkLeaders = (filterByDate = '') => {
 };
 
 const _sortWalkLeaders = (sortSelected) => {
-  //TODO: Toggle off and on or reset
-  if (sortBy === sortSelected) return;
+  if (sortBy === sortSelected) {
+    sortBy = null;
+    activeLeaders = _walkLeaders.slice();
+  }
   else if (sortSelected === 'alpha') {
     activeLeaders.sort((pLeader, cLeader)=>{
       return pLeader.firstName > cLeader.firstName;
     });
+    sortBy = sortSelected
   }
   else { //'count'
     activeLeaders.sort((pLeader, cLeader)=>{
       return pLeader.walks.length < cLeader.walks.length;
     });
+    sortBy = sortSelected;
   }
+
 };
 
 const _toggleWalkFilter = (filter, filterName) => {
@@ -216,6 +222,7 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
   },
 
   getSortBy() {
+    debugger;
     return sortBy;
   },
 
@@ -242,7 +249,7 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
       currentRoute = pathname;
       filterByDate = 'all';
       sortBy = null;
-      activeLeaders = _walkLeaders;
+      activeLeaders = _walkLeaders.slice();
     }
 
     return activeLeaders;
@@ -291,10 +298,8 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
         break;
       case Actions.SORT_LEADERS:
         _sortWalkLeaders(action.sortBy);
-        sortBy = action.sortBy;
         break;
       case Actions.TOGGLE_MENU:
-        //TODO: refactor into separate component
         let menuItem = menuItems.find(i => i.display === action.item);
         menuItem.active = !menuItem.active;
     }
