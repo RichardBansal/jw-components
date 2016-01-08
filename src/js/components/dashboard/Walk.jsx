@@ -10,6 +10,8 @@ const Walk = ({title, start, meeting, id, team, url}) => {
   //TODO: Promote | Edit | Unpublish
   //TODO*: mailto: for email
 
+  //TODO: Are we able to add a `pastWalk` class to a `walk` that is in the past? I’m thinking it will be helpful if we style upcoming walks differently from past walks in the list, and style the `promote` button not to appear
+
   return (
     <li key={id}>
       <div className="walk">

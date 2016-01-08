@@ -87,6 +87,7 @@ const _retrieveWalks = () => {
   if (currentRoute === '/userWalks') return walks;
 };
 
+//Could you make Filter by Region an `or` filter instead of an `and` filter
 const _filterWalks = (filters = activeFilters, filterByDate = 'all') => {
   let allWalks = _retrieveWalks();
 
@@ -175,6 +176,7 @@ const _removeWalkFilter = (filter, filterName) => {
   if (activeFilterIndex !== -1) activeFilters[filterName].splice(activeFilterIndex, 1);
 };
 
+//TODO: To be done server side, not client side: I think there is an issue with the `export spreadsheet` feature—the csv only includes walk titles
 const _generateCSV = () => {
   //TODO: Configuration (what to export) + Complete Functionality
   return encodeURI("data:text/csv;charset=utf-8,Title \n" + (filteredWalks.map(w => (`\"${w.title} \"`))).join('\n'));

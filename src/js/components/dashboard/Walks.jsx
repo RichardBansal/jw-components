@@ -13,7 +13,6 @@ import Walk from './Walk.jsx';
 const getWalks = (props) => ({
   walks: props.walks || DashboardStore.getWalks(props.location),
   activeFilters: props.activeFilters || DashboardStore.getActiveFilters().activeFilters,
-  inActiveFilters: props.inActiveFilters || DashboardStore.getActiveFilters().inActiveFilters,
   filterByDate: props.filterByDate || DashboardStore.getDateFilter(),
 });
 
