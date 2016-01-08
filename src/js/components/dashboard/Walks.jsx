@@ -1,6 +1,6 @@
 import React from 'react';
 
-import WalksFilter from './WalksFilter.jsx';
+import WalkFilters from './WalkFilters.jsx';
 import WalksMap from './WalksMap.jsx';
 import DashboardStore from './DashboardStore';
 import DashboardActions from './DashboardActions';
@@ -19,7 +19,6 @@ const getWalks = (props) => ({
 export default class Walks extends React.Component {
   constructor(props, ...args) {
     super(props, ...args);
-    debugger;
     this.state = getWalks(props);
     this.state.currentView = 'list';
     this._onChange = this._onChange.bind(this);

@@ -9,5 +9,3 @@ export function register( callback ) {
 export function dispatch( actionType, action) {
   flux.dispatch( actionType, action);
 }
-
-//TODO:(During PR) duplicate of Itinerary dispatcher, bring in generalized dispatcher

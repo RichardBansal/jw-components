@@ -1,5 +1,3 @@
-//TODO:(During PR) Place in generic constants files, bring that in from dev branch (replicate)
-
 const Actions = [
   'FILTER_WALKS',
   'TOGGLE_WALK_FILTER',

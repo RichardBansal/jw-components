@@ -17,8 +17,8 @@ const getMenu = () => ({
   menuItems: DashboardStore.getMenuItems(),
 });
 
-//TODO*: Refactoring Components, and Sticky Active Menu Item
-//TODO*: Show number of each menu item
+//TODO*: Sticky Active Menu Item
+//TODO: Show number of each menu item
 
 const Components = {DashboardResources, MyBlogPosts, Walks, WalkLeaders};
 
