@@ -54,7 +54,7 @@ export default class Walks extends React.Component {
     );
 
     //TODO: (Post-PR) Place buttons in WalksFilterOptions (should be a generic FilterOptions)
-    //TODO**: Create generic button component
+    //TODO: (Post-PR) Create generic button component as part of a filter generic component (iterable buttons)
     return (<div className="walks">
       <button className={`walksListButton ${currentView === 'list' ? 'active' : null}`} onClick={()=>this.setState({currentView: 'list'})}>List</button>
       <button className={`walksMapButton ${currentView === 'map' ? 'active' : null}`} onClick={()=>this.setState({currentView: 'map'})}>Map</button>
