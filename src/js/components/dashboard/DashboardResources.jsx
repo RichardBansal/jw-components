@@ -41,7 +41,9 @@ const DashboardResources = () => {
         <ul>
           {videoTips.map((v,i) => (
             <li key={i}>
-              <iframe src={`${v}`} width="250" height="140" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              <div className='embed-container'>
+                <iframe src={`${v}`} frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              </div>
             </li>)
           )}
         </ul>
