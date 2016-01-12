@@ -59,8 +59,8 @@ export default class Walks extends React.Component {
       <button className={`walksListButton ${currentView === 'list' ? 'active' : null}`} onClick={()=>this.setState({currentView: 'list'})}>List</button>
       <button className={`walksMapButton ${currentView === 'map' ? 'active' : null}`} onClick={()=>this.setState({currentView: 'map'})}>Map</button>
       {
-        filterByDate ==='all' ?
-        <button className = {filterByDate ==='past' ? 'active' : null }onClick={() => DashboardActions.filterByDate('future')}>With Past Walks</button> :
+        filterByDate === 'all' ?
+        <button className = {filterByDate === 'past' ? 'active' : null }onClick={() => DashboardActions.filterByDate('future')}>With Past Walks</button> :
         <button className = {filterByDate === 'future' ? 'active' : null } onClick={()=>DashboardActions.filterByDate('all')}>Without Past Walks</button>
       }
       <button onClick={() => window.open(DashboardStore.generateCSV())}>Export Spreadsheet</button>

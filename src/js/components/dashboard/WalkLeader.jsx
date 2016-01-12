@@ -7,8 +7,8 @@ import { dateFormatted } from './../itinerary/ItineraryUtils';
 
 const Walk = ({firstName, lastName, walks, email}) => {
 
-  const Walks = walks.map((w,i) => {
-    const fullYear = (new Date(w.time.slots[0][0]*1000)).getFullYear();
+  const Walks = walks.map((w, i) => {
+    const fullYear = (new Date(w.time.slots[0][0] * 1000)).getFullYear();
     return (<li key={i}>Walk Leader: {w.title} ({fullYear})</li>);
   });
 

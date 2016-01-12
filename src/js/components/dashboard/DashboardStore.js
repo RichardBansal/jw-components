@@ -43,7 +43,7 @@ const generateWalkLeaders = (walks) => {
         if (role.includes('leader') || role.includes('organizer')) {
           let leaderExists = walkLeaders.findIndex(l => l.firstName === m['name-first'] && l.lastName === m['name-last']);
           if (leaderExists !== -1) walkLeaders[leaderExists].walks.push(w);
-          else walkLeaders.push({firstName:m['name-first'], lastName:m['name-last'], walks: [w], email:m['email']});
+          else walkLeaders.push({firstName: m['name-first'], lastName: m['name-last'], walks: [w], email: m['email']});
         }
       });
     }
@@ -55,14 +55,14 @@ const _walkLeaders = generateWalkLeaders(walks);
 
 const _walkLeadersPerYear = (year, walkLeaders) => {
   return walkLeaders.reduce((sum, walkLeader)=>{
-    const ledWalkThisYear = walkLeader.walks.find(w => new Date(JSON.parse(w.time.slots[0][0])*1000).getFullYear() === year);
+    const ledWalkThisYear = walkLeader.walks.find(w => new Date(JSON.parse(w.time.slots[0][0]) * 1000).getFullYear() === year);
     return ledWalkThisYear ? sum + 1 : sum;
   }, 0);
 };
 
 const _walksPerYear = (year, walks) => {
-  return walks.reduce((sum,walk)=>{
-    const walkThisYear = new Date((walk.time.slots[0][0])*1000).getFullYear() === year;
+  return walks.reduce((sum, walk)=>{
+    const walkThisYear = new Date((walk.time.slots[0][0]) * 1000).getFullYear() === year;
     return walkThisYear ? sum + 1 : sum;
   }, 0);
 };
@@ -78,7 +78,7 @@ const _generateRegionSummary = (walks) => {
     totalWalkLeaders: _walkLeaders.length,
     totalWalks: walks.length,
     name: city.name,
-  }
+  };
 };
 
 const _regionSummary = _generateRegionSummary(walks);
@@ -128,13 +128,13 @@ const _filterWalkLeaders = (filterByDate = '') => {
       const currentDate = Date.now();
       if (filterByDate === 'past') {
         return leader.walks.reduce((p, walk) => {
-          if(p) return p;
+          if (p) return p;
           return walk.time.slots[0][0] * 1000 <= currentDate;
         }, false);
       }
       if (filterByDate === 'future') {
         return leader.walks.reduce((p, walk) => {
-          if(p) return p;
+          if (p) return p;
           return walk.time.slots[0][0] * 1000 >= currentDate;
         }, false);
       }
@@ -152,7 +152,7 @@ const _sortWalkLeaders = (sortSelected) => {
     activeLeaders.sort((pLeader, cLeader)=>{
       return pLeader.firstName > cLeader.firstName;
     });
-    sortBy = sortSelected
+    sortBy = sortSelected;
   }
   else { //'count'
     activeLeaders.sort((pLeader, cLeader)=>{
@@ -222,7 +222,6 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
   },
 
   getSortBy() {
-    debugger;
     return sortBy;
   },
 
@@ -264,7 +263,7 @@ const DashboardStore = Object.assign(EventEmitter.prototype, {
   },
 
   getLatestPost() {
-    return {post:blog[0]};
+    return {post: blog[0]};
   },
 
   getRegionSummary() {
