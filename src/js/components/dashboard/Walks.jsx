@@ -79,5 +79,4 @@ Walks.PropTypes = {
   walks: React.PropTypes.array.isRequired,
   activeFilters: React.PropTypes.object.isRequired,
   filterByDate: React.PropTypes.string.isRequired,
-  inActiveFilters: React.PropTypes.object.isRequired,
 };
