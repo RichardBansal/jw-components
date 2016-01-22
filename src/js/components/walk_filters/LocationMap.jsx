@@ -113,7 +113,7 @@ function addNewMarkersToMap(markers, walks, map) {
   return markers;
 }
 
-export default class LocationMap extends React.Component {
+export default class CityMap extends React.Component {
   constructor(...args) {
     super(...args);
 

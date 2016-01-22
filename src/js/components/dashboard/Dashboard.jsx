@@ -8,6 +8,7 @@ import DashboardMenu from './DashboardMenu.jsx';
 import DashboardSummary from './DashboardSummary.jsx';
 
 import './view.less';
+//TODO: PR updates to remove backticks and include t functions: the piece we'll need first is a `gettext` update that can extract `t` functions from `jsx` code
 
 const Dashboard = () => (
   <section className="dashboard">
